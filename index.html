@@ -264,11 +264,17 @@
   .dp-hint{ font-size:10.5px; color:var(--muted-dark); margin-top:10px; font-style:italic; }
   .sheet-backdrop{ display:none; }
 
-  .timeline{ margin-top:16px; border-inline-start:2px solid var(--pink-soft); padding-inline-start:20px; }
-  .tl-item{ margin-bottom:20px; position:relative; }
-  .tl-item::before{ content:""; position:absolute; inset-inline-start:-26px; top:3px; width:10px; height:10px; border-radius:50%; background:var(--pink); }
+  .timeline{ margin-top:16px; border-inline-start:2px solid var(--pink-soft); padding-inline-start:22px; }
+  .tl-item{ margin-bottom:22px; position:relative; }
+  .tl-item::before{ content:""; position:absolute; inset-inline-start:-28px; top:4px; width:10px; height:10px; border-radius:50%; background:var(--pink); }
+  /* Les dates fondatrices — congrès de Fès, 14ᵉ Congrès — portent un point
+     plus marqué : la chronologie encode ainsi les jalons majeurs. */
+  .tl-item.tl-major::before{ width:14px; height:14px; inset-inline-start:-30px; top:2px; background:var(--navy-dark); box-shadow:0 0 0 4px var(--pink-soft); }
+  .tl-item.tl-major .tl-year{ font-size:13.5px; color:var(--navy-dark); }
+  .tl-item.tl-major .tl-text{ font-weight:600; }
   .tl-year{ font-size:12px; font-weight:800; color:var(--pink); }
-  .tl-text{ font-size:12.5px; color:var(--ink); margin-top:2px; }
+  .tl-text{ font-size:12.5px; color:var(--ink); margin-top:3px; line-height:1.65; max-width:660px; }
+  .source-note{ font-size:11.5px; color:var(--muted-dark); line-height:1.7; max-width:660px; margin-top:22px; padding-top:14px; border-top:1px solid var(--line); font-style:italic; }
 
   .value-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:14px; margin-top:16px; }
   .value-card{ background:#fff; border:1px solid var(--line); border-radius:10px; padding:16px; }
@@ -1154,13 +1160,18 @@ function buildPanels(){
       <div class="value-card"><div class="t">${A("Engagement politique","الالتزام السياسي")}</div><div class="d">${A("Porter la voix des jeunes dans le débat public national.","حمل صوت الشباب في النقاش العمومي الوطني.")}</div></div>
       <div class="value-card"><div class="t">${A("Ancrage territorial","التجذر الترابي")}</div><div class="d">${A("Être présent au plus près des citoyens via les sections régionales, provinciales et locales.","الحضور بالقرب من المواطنين عبر الفروع الجهوية والإقليمية والمحلية.")}</div></div>
     </div>
-    ` + head("Repères récents","محطات حديثة") + `
+    ` + head("Histoire","التاريخ","ⴰⵎⵣⵔⵓⵢ") + `
+    <p class="lead">${A("La Jeunesse Istiqlalienne (Chabiba Istiqlalia) est la plus ancienne organisation de jeunesse politique du Maroc.","الشبيبة الاستقلالية هي أقدم منظمة شبابية سياسية بالمغرب.")}</p>
     <div class="timeline">
+      <div class="tl-item"><div class="tl-year">${A("1955-1956","1955-1956")}</div><div class="tl-text">${A("Le Maroc recouvre son indépendance politique et territoriale : la France puis l'Espagne reconnaissent l'indépendance du Royaume.","يسترجع المغرب استقلاله السياسي والترابي: تعترف فرنسا ثم إسبانيا باستقلال المملكة.")}</div></div>
+      <div class="tl-item tl-major"><div class="tl-year">${A("24-26 mars 1956","24-26 مارس 1956")}</div><div class="tl-text">${A("Congrès fondateur tenu à Fès : naissance officielle de la Jeunesse Istiqlalienne comme organe de jeunesse du Parti de l'Istiqlal, dans le prolongement direct du parti qui avait mené la résistance nationale contre les protectorats français et espagnol.","المؤتمر التأسيسي المنعقد بفاس: الميلاد الرسمي للشبيبة الاستقلالية كمنظمة شبابية لحزب الاستقلال، في امتداد مباشر للحزب الذي قاد المقاومة الوطنية ضد الحمايتين الفرنسية والإسبانية.")}</div></div>
+      <div class="tl-item"><div class="tl-year">${A("Depuis 1956","منذ 1956")}</div><div class="tl-text">${A("Plus de 220 sections locales et 16 conseils régionaux se constituent progressivement à travers le Royaume ; l'organisation devient un vivier de cadres pour le Parti de l'Istiqlal.","تتأسس تدريجياً أزيد من 220 فرعاً محلياً و16 مجلساً جهوياً عبر ربوع المملكة؛ وتصبح المنظمة مشتلاً للأطر بالنسبة لحزب الاستقلال.")}</div></div>
       <div class="tl-item"><div class="tl-year">${A("11 mai 2026","11 ماي 2026")}</div><div class="tl-text">${A("Réunion du Bureau exécutif sortant, lancement des préparatifs du 14ᵉ Congrès.","اجتماع المكتب التنفيذي المنتهية ولايته، وانطلاق التحضيرات للمؤتمر الرابع عشر.")}</div></div>
       <div class="tl-item"><div class="tl-year">${A("16 mai 2026","16 ماي 2026")}</div><div class="tl-text">${A("Comité central : élection du président et des structures de la commission préparatoire nationale.","اللجنة المركزية: انتخاب رئيس وهياكل اللجنة التحضيرية الوطنية.")}</div></div>
-      <div class="tl-item"><div class="tl-year">${A("10-11 juillet 2026","10-11 يوليوز 2026")}</div><div class="tl-text">${A("14ᵉ Congrès national à Salé, sous le thème « L'autonomisation maintenant... vers un nouveau contrat social ».","المؤتمر الوطني الرابع عشر بسلا، تحت شعار «التمكين الآن... نحو تعاقد مجتمعي جديد».")}</div></div>
-      <div class="tl-item"><div class="tl-year">${A("11 juillet 2026","11 يوليوز 2026")}</div><div class="tl-text">${A("Élection de Mansour Lambarki au poste de Secrétaire Général et du nouveau Bureau exécutif.","انتخاب منصور لمباركي كاتباً عاماً وانتخاب المكتب التنفيذي الجديد.")}</div></div>
+      <div class="tl-item tl-major"><div class="tl-year">${A("10-11 juillet 2026","10-11 يوليوز 2026")}</div><div class="tl-text">${A("14ᵉ Congrès national à Salé, sous le thème « L'autonomisation maintenant... vers un nouveau contrat social ».","المؤتمر الوطني الرابع عشر بسلا، تحت شعار «التمكين الآن... نحو تعاقد مجتمعي جديد».")}</div></div>
+      <div class="tl-item"><div class="tl-year">${A("11 juillet 2026","11 يوليوز 2026")}</div><div class="tl-text">${A("Élection de Mansour Lambarki au poste de Secrétaire Général et du nouveau Bureau exécutif de la 14ᵉ mandature.","انتخاب منصور لمباركي كاتباً عاماً وانتخاب المكتب التنفيذي الجديد للولاية الرابعة عشرة.")}</div></div>
     </div>
+    <p class="source-note">${A("Source : congrès fondateur de Fès (24-26 mars 1956), documenté par l'organisation elle-même et par des sources encyclopédiques marocaines. Aucun fondateur individuel n'est mis en avant dans les sources consultées : l'organisation est présentée comme née collectivement de la direction du Parti de l'Istiqlal au lendemain de l'indépendance.","المصدر: المؤتمر التأسيسي بفاس (24-26 مارس 1956)، الموثق من طرف المنظمة نفسها ومن مصادر موسوعية مغربية. لا تبرز المصادر المطلع عليها أي مؤسس فردي: تُقدَّم المنظمة على أنها وُلدت جماعياً من قيادة حزب الاستقلال غداة الاستقلال.")}</p>
   `);
 
   /* ---- STATUTS ---- */
