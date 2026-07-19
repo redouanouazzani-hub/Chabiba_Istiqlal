@@ -6,7 +6,7 @@
 <title>Portail Officiel — Jeunesse Istiqlalienne</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&family=Noto+Sans+Tifinagh&display=swap" rel="stylesheet">
 <style>
   :root{
     --navy:#1F3A5F; --navy-dark:#12263F; --pink:#E4007C; --pink-dark:#B4005F; --pink-soft:#FCE4F1;
@@ -18,6 +18,8 @@
   html{scroll-behavior:smooth;}
   body{ margin:0; background:var(--bg); font-family:'Segoe UI',Tahoma,Arial,sans-serif; color:var(--ink); }
   html[dir="rtl"] body{ font-family:'Tajawal','Segoe UI',Tahoma,Arial,sans-serif; }
+  html[lang="zgh"] body,
+  [lang="zgh"]{ font-family:'Noto Sans Tifinagh','Segoe UI',Tahoma,Arial,sans-serif; }
   a{ text-decoration:none; color:inherit; }
   button{ font-family:inherit; }
   :focus-visible{ outline:2.5px solid var(--pink); outline-offset:2px; border-radius:4px; }
@@ -186,13 +188,16 @@
 
   /* ---- carte pivotante ---- */
   /* ---- carte pivotante ----
-     Les faces sont construites en <span> à l'intérieur d'un <button> :
-     il faut forcer leur display, sinon elles restent inline et s'effondrent. */
-  .flip{ perspective:1200px; height:214px; background:none; border:none; padding:0; cursor:pointer; font-family:inherit; display:block; width:100%; }
-  .flip-inner{ position:relative; display:block; width:100%; height:100%; transition:transform .62s cubic-bezier(.2,.7,.2,1); transform-style:preserve-3d; }
-  .flip.turned .flip-inner{ transform:rotateY(180deg); }
+     Comportement repris de l'organigramme d'origine : pivot au survol,
+     et pivot persistant au clic (indispensable au tactile, où il n'y a pas de survol).
+     Les faces sont des <span> dans un <button> : leur display doit être forcé. */
+  .flip{ perspective:1000px; height:300px; background:none; border:none; padding:0; cursor:pointer; font-family:inherit; display:block; width:100%; }
+  .flip-inner{ position:relative; display:block; width:100%; height:100%; transition:transform .6s; transform-style:preserve-3d; }
+  .flip:hover .flip-inner, .flip:focus-visible .flip-inner, .flip.turned .flip-inner{ transform:rotateY(180deg); }
+  html[dir="rtl"] .flip:hover .flip-inner,
+  html[dir="rtl"] .flip:focus-visible .flip-inner,
   html[dir="rtl"] .flip.turned .flip-inner{ transform:rotateY(-180deg); }
-  .face{ position:absolute; inset:0; backface-visibility:hidden; -webkit-backface-visibility:hidden; border-radius:14px; padding:18px 14px; display:flex; flex-direction:column; align-items:center; justify-content:center; overflow:hidden; }
+  .face{ position:absolute; inset:0; backface-visibility:hidden; -webkit-backface-visibility:hidden; border-radius:14px; padding:22px 18px; display:flex; flex-direction:column; align-items:center; justify-content:center; overflow:hidden; }
   .face > *{ max-width:100%; }
   .txt, .sg-txt{ display:flex; flex-direction:column; align-items:center; width:100%; }
 
@@ -207,27 +212,27 @@
   .face-back{ transform:rotateY(180deg); background:linear-gradient(155deg,var(--navy-dark),var(--navy) 70%,#2a4a75); color:#fff; justify-content:flex-start; text-align:start; box-shadow:0 14px 30px rgba(18,38,63,.22); }
   html[dir="rtl"] .face-back{ transform:rotateY(-180deg); }
   .face-back::before{ content:""; position:absolute; inset-inline-end:-40px; top:-40px; width:130px; height:130px; border-radius:50%; background:rgba(228,0,124,.28); }
-  .face-back .bk-name{ font-size:12.5px; font-weight:800; position:relative; display:block; }
-  .face-back .bk-name-ar{ font-size:12px; font-weight:700; color:#ffd7ec; direction:rtl; margin-top:1px; position:relative; display:block; }
-  .face-back .bk-sep{ width:26px; height:2px; background:var(--pink); margin:9px 0; position:relative; border-radius:2px; display:block; flex-shrink:0; }
-  .face-back .bk-mission{ font-size:11px; line-height:1.65; color:#dbe3ec; direction:rtl; text-align:start; position:relative; display:block; overflow-y:auto; max-height:104px; padding-inline-end:4px; width:100%; }
+  .face-back .bk-name{ font-size:13.5px; font-weight:800; position:relative; display:block; }
+  .face-back .bk-name-ar{ font-size:13px; font-weight:700; color:#ffd7ec; direction:rtl; margin-top:1px; position:relative; display:block; }
+  .face-back .bk-sep{ width:34px; height:2px; background:var(--pink); margin:12px 0; position:relative; border-radius:2px; display:block; flex-shrink:0; }
+  .face-back .bk-mission{ font-size:12px; line-height:1.75; color:#e4ebf3; direction:rtl; text-align:start; position:relative; display:block; overflow-y:auto; max-height:170px; padding-inline-end:5px; width:100%; }
   .face-back .bk-hint{ position:absolute; inset-inline-end:12px; bottom:10px; font-size:9.5px; color:rgba(255,255,255,.55); display:block; }
 
-  .bureau-avatar{ width:56px; height:56px; border-radius:50%; background:linear-gradient(140deg,var(--pink-soft),#fff); margin:0 auto 10px; display:flex; align-items:center; justify-content:center; font-size:16px; font-weight:800; color:var(--pink-dark); flex-shrink:0; overflow:hidden; border:2px solid var(--pink-soft); transition:transform .25s, box-shadow .25s; }
+  .bureau-avatar{ width:78px; height:78px; border-radius:50%; background:linear-gradient(140deg,var(--pink-soft),#fff); margin:0 auto 14px; display:flex; align-items:center; justify-content:center; font-size:22px; font-weight:800; color:var(--pink-dark); flex-shrink:0; overflow:hidden; border:2px solid var(--pink-soft); transition:transform .25s, box-shadow .25s; }
   .bureau-avatar img{ width:100%; height:100%; object-fit:cover; }
-  .face-front .nm{ font-size:12.5px; font-weight:700; color:var(--navy-dark); line-height:1.3; text-align:center; display:block; }
-  .face-front .nm-ar{ font-size:11.5px; color:var(--muted-dark); direction:rtl; margin-top:2px; text-align:center; display:block; }
-  .face-front .pole-tag{ font-size:9.5px; font-weight:700; color:var(--pink-dark); background:var(--pink-soft); border-radius:10px; padding:3px 9px; margin-top:9px; display:inline-block; }
+  .face-front .nm{ font-size:14px; font-weight:700; color:var(--navy-dark); line-height:1.3; text-align:center; display:block; }
+  .face-front .nm-ar{ font-size:13px; color:var(--muted-dark); direction:rtl; margin-top:2px; text-align:center; display:block; }
+  .face-front .pole-tag{ font-size:10px; font-weight:700; color:var(--pink-dark); background:var(--pink-soft); border-radius:11px; padding:4px 11px; margin-top:12px; display:inline-block; }
 
   /* Secrétaire Général : carte pleine largeur, traitement distinct */
-  .flip.is-sg{ grid-column:1/-1; height:152px; }
+  .flip.is-sg{ grid-column:1/-1; height:190px; }
   .flip.is-sg .face{ flex-direction:row; align-items:center; justify-content:flex-start; gap:20px; padding:20px 24px; text-align:start; }
   .flip.is-sg .face-front{ border:1.5px solid var(--pink); background:linear-gradient(120deg,#fff 62%,var(--pink-soft)); }
-  .flip.is-sg .bureau-avatar{ width:84px; height:84px; margin:0; border:3px solid var(--pink); }
+  .flip.is-sg .bureau-avatar{ width:110px; height:110px; margin:0; border:3px solid var(--pink); }
   .flip.is-sg .sg-txt{ display:flex; flex-direction:column; align-items:flex-start; width:auto; }
-  .flip.is-sg .face-front .nm{ font-size:16px; text-align:start; }
-  .flip.is-sg .face-front .nm-ar{ font-size:14px; color:var(--pink); font-weight:700; text-align:start; }
-  .flip.is-sg .face-back .bk-mission{ max-height:64px; font-size:11.5px; }
+  .flip.is-sg .face-front .nm{ font-size:19px; text-align:start; }
+  .flip.is-sg .face-front .nm-ar{ font-size:16px; color:var(--pink); font-weight:700; text-align:start; }
+  .flip.is-sg .face-back .bk-mission{ max-height:96px; font-size:12.5px; }
   .flip.is-sg .face-back{ flex-direction:column; align-items:flex-start; justify-content:center; }
 
   .empty-state{ background:#fff; border:1px dashed var(--line); border-radius:10px; padding:30px 20px; text-align:center; grid-column:1/-1; }
@@ -319,6 +324,7 @@
   .social-row a{ width:38px; height:38px; border-radius:50%; background:var(--navy-dark); display:flex; align-items:center; justify-content:center; color:#fff; font-size:12px; font-weight:700; }
   .social-row a:hover{ background:var(--pink); }
 
+  .lang-notice{ background:var(--pink-soft); border:1px solid #f5c6de; color:var(--pink-dark); font-size:11.5px; line-height:1.6; border-radius:8px; padding:10px 14px; margin-top:10px; }
   .demo-badge{ background:var(--amber-bg); border:1px solid #eed9ae; color:var(--amber); font-size:11.5px; font-weight:600; border-radius:8px; padding:9px 14px; margin-top:16px; }
 
   footer{ background:var(--navy-dark); color:#c9d4e0; margin-top:60px; padding:34px 24px; }
@@ -395,17 +401,17 @@
     .stats{ grid-template-columns:1fr 1fr; }
     .grid3,.grid2,.steps,.value-grid,.region-grid,.row2{ grid-template-columns:1fr; }
     .bureau-grid, .bureau-layout.with-panel .bureau-grid{ grid-template-columns:1fr 1fr; gap:12px; }
-    .flip{ height:204px; }
+    .flip{ height:272px; }
     .face{ padding:14px 10px; }
-    .bureau-avatar{ width:46px; height:46px; font-size:14px; }
-    .face-back .bk-mission{ max-height:92px; font-size:10.5px; }
-    .flip.is-sg{ height:216px; }
+    .bureau-avatar{ width:60px; height:60px; font-size:17px; }
+    .face-back .bk-mission{ max-height:150px; font-size:11px; }
+    .flip.is-sg{ height:288px; }
     .flip.is-sg .face{ flex-direction:column; text-align:center; gap:12px; padding:18px 14px; }
     .flip.is-sg .sg-txt{ align-items:center; }
-    .flip.is-sg .bureau-avatar{ width:60px; height:60px; }
+    .flip.is-sg .bureau-avatar{ width:78px; height:78px; }
     .flip.is-sg .face-front .nm{ font-size:14px; text-align:center; }
     .flip.is-sg .face-front .nm-ar{ text-align:center; }
-    .flip.is-sg .face-back .bk-mission{ max-height:96px; }
+    .flip.is-sg .face-back .bk-mission{ max-height:150px; }
     .gallery{ grid-template-columns:repeat(2,1fr); }
     .tracker{ flex-direction:column; gap:14px; }
     .tr-step::after{ display:none; }
@@ -430,8 +436,8 @@
       <button class="music-btn" id="musicBtn" onclick="toggleMusic()" title="Musique d'ambiance" aria-label="Musique d'ambiance">🔈</button>
       <span id="taglineTop">Portail officiel — maquette de démonstration</span>
     </span>
-    <span class="lang-switch" role="group" aria-label="Langue / اللغة">
-      <button data-l="fr" class="on">FR</button><button data-l="ar">ع</button>
+    <span class="lang-switch" role="group" aria-label="Langue / اللغة / ⵜⵓⵜⵍⴰⵢⵜ">
+      <button data-l="fr" class="on">FR</button><button data-l="ar">ع</button><button data-l="zgh" lang="zgh">ⵣ</button>
     </span>
   </div>
 
@@ -509,26 +515,26 @@
 
 /* ---- Arborescence de navigation ---- */
 const MENU = [
-  { id:"organisation", fr:"L'organisation", ar:"المنظمة", children:[
-    { key:"gouvernance",  fr:"Gouvernance & organigramme", ar:"الحكامة والهيكل التنظيمي" },
-    { key:"presentation", fr:"Présentation & histoire",    ar:"التعريف والتاريخ" },
-    { key:"statuts",      fr:"Statuts et documents officiels", ar:"القوانين والوثائق الرسمية" },
-    { key:"regions",      fr:"Coordinations régionales",   ar:"التنسيقيات الجهوية" },
+  { id:"organisation", fr:"L'organisation", ar:"المنظمة", zgh:"ⵜⴰⵎⵙⵎⵓⵏⵜ", children:[
+    { key:"gouvernance",  fr:"Gouvernance & organigramme", ar:"الحكامة والهيكل التنظيمي", zgh:"ⵜⴰⵏⴱⴰⴹⵜ ⴷ ⵓⵙⴳⴳⴰⵙ" },
+    { key:"presentation", fr:"Présentation & histoire",    ar:"التعريف والتاريخ", zgh:"ⴰⵙⵙⵓⴼⵖ ⴷ ⵓⵎⵣⵔⵓⵢ" },
+    { key:"statuts",      fr:"Statuts et documents officiels", ar:"القوانين والوثائق الرسمية", zgh:"ⵉⵣⵔⴼⴰⵏ ⴷ ⵜⵉⵔⵔⴰ ⵜⵓⵏⵚⵉⴱⵉⵏ" },
+    { key:"regions",      fr:"Coordinations régionales",   ar:"التنسيقيات الجهوية", zgh:"ⵜⵉⵎⵙⵙⵓⴷⴰⵙ ⵜⵉⵎⵏⴰⴹⵉⵏ" },
   ]},
-  { id:"participer", fr:"Participer", ar:"المشاركة", children:[
-    { key:"agenda",       fr:"Activités & agenda",             ar:"الأنشطة والأجندة" },
-    { key:"propositions", fr:"Propositions et consultations",  ar:"المقترحات والاستشارات" },
-    { key:"formations",   fr:"Formations",                     ar:"التكوينات" },
+  { id:"participer", fr:"Participer", ar:"المشاركة", zgh:"ⴷⵔⵓ", children:[
+    { key:"agenda",       fr:"Activités & agenda",             ar:"الأنشطة والأجندة", zgh:"ⵜⵉⵎⵀⵍⵉⵡⵉⵏ ⴷ ⵓⵣⵎⵣ" },
+    { key:"propositions", fr:"Propositions et consultations",  ar:"المقترحات والاستشارات", zgh:"ⵜⵉⵙⵓⵎⴰⵔ ⴷ ⵜⵉⵎⵛⴰⵡⴰⵕⵉⵏ" },
+    { key:"formations",   fr:"Formations",                     ar:"التكوينات", zgh:"ⵉⵙⵎⵓⵜⵜⴳⵏ" },
   ]},
-  { id:"ressources", fr:"Ressources", ar:"الموارد", children:[
-    { key:"actualites",  fr:"Actualités",   ar:"الأخبار" },
-    { key:"mediatheque", fr:"Médiathèque",  ar:"الوسائط المتعددة" },
-    { key:"presse",      fr:"Revue de presse", ar:"المراجعة الصحفية" },
+  { id:"ressources", fr:"Ressources", ar:"الموارد", zgh:"ⵜⵉⵖⴱⵓⵍⴰ", children:[
+    { key:"actualites",  fr:"Actualités",   ar:"الأخبار", zgh:"ⵉⵏⵖⵎⵉⵙⵏ" },
+    { key:"mediatheque", fr:"Médiathèque",  ar:"الوسائط المتعددة", zgh:"ⵜⴰⵎⴷⵢⴰⵜⵉⴽⵜ" },
+    { key:"presse",      fr:"Revue de presse", ar:"المراجعة الصحفية", zgh:"ⵜⴰⵖⵓⵔⵉ ⵏ ⵓⵖⵎⵉⵙ" },
   ]},
-  { id:"contact", fr:"Contact", ar:"التواصل", children:[
-    { key:"ecrire",   fr:"Écrire",                   ar:"مراسلتنا" },
-    { key:"annuaire", fr:"Annuaire des responsables", ar:"دليل المسؤولين" },
-    { key:"faq",      fr:"FAQ",                       ar:"الأسئلة الشائعة" },
+  { id:"contact", fr:"Contact", ar:"التواصل", zgh:"ⴰⵎⵢⴰⵡⴰⴹ", children:[
+    { key:"ecrire",   fr:"Écrire",                   ar:"مراسلتنا", zgh:"ⴰⵔⴰ ⴰⵖ" },
+    { key:"annuaire", fr:"Annuaire des responsables", ar:"دليل المسؤولين", zgh:"ⴰⵎⵏⴰⴷ ⵏ ⵉⵎⴰⵙⴰⵢⵏ" },
+    { key:"faq",      fr:"FAQ",                       ar:"الأسئلة الشائعة", zgh:"ⵉⵙⵇⵙⵉⵜⵏ ⵉⵎⵣⴳⵉⵢⵏ" },
   ]},
 ];
 
@@ -567,6 +573,28 @@ const UI = {
     required:"حقل إلزامي.", emailBad:"عنوان بريد إلكتروني غير صالح، مثال: nom@exemple.ma",
     sending:"جارٍ الإرسال…", sent:"تم إرسال الرسالة. سيجيبكم المكتب الوطني خلال 48 ساعة.",
     orgHint:"انقر على أي مستوى لاكتشاف دوره وطريقة تعيينه.",
+  },
+  /* ---- Amazigh (tifinagh) ----
+     Libellés d'interface uniquement. Les contenus longs et les 35 missions
+     officielles restent en arabe : ils doivent être traduits par un
+     traducteur amazighophone (IRCAM) avant toute publication officielle. */
+  zgh:{
+    brandFr:"ⵜⴰⵄⵥⵥⴰⵏⵜ ⵜⴰⵙⵜⵉⵇⵍⴰⵍⵉⵜ", tagline:"ⵜⴰⵡⵡⵓⵔⵜ ⵜⵓⵏⵚⵉⴱⵜ — ⴰⵎⴷⵢⴰ",
+    search:"ⵔⵣⵓ", searchPh:"ⵔⵣⵓ ⵅⴼ ⵢⴰⵜ ⵜⴰⵙⵏⴰ ⵏⵖ ⵢⴰⵏ ⵓⵎⵙⵎⵓⵏ…",
+    member:"ⴰⵎⵏⴰⴹ ⵏ ⵓⵎⵙⵎⵓⵏ", join:"ⵎⵓⵏ ⴷⵉⴷⵏⵖ", home:"ⵜⴰⵙⵏⴰ ⵜⴰⵎⵣⵡⴰⵔⵓⵜ",
+    menu:"ⵜⴰⵙⵎⵎⴰⵍⵜ", close:"ⵔⴳⵍ",
+    searchNoRes:"ⵓⵔ ⵉⵍⵍⵉ ⵡⴰⵙⵙⴰⵖ ⵉ ⵓⵔⵣⵣⵓ ⴰⴷ.",
+    noMember:"ⵓⵔ ⵉⵍⵍⵉ ⵓⵎⵙⵎⵓⵏ ⵉⵎⵙⴰⵙⴰⵏ ⴷ ⵓⵔⵣⵣⵓ ⴰⴷ.",
+    reset:"ⵙⵎⴰⵜⵜⵉ ⴰⵔⵣⵣⵓ", allPoles:"ⵎⴰⵕⵕⴰ ⵉⴳⵔⴰⵏ",
+    counter:(n,t)=>n+" ⵙⴳ "+t,
+    missionLabel:"ⵜⴰⵡⵓⵔⵉ ⵜⵓⵏⵚⵉⴱⵜ", prev:"← ⴰⵎⵣⵡⴰⵔⵓ", next:"ⵓⵎⵎⵉⴳ →",
+    flipHint:"ⵙⵙⴽⵛⵎ ⴰⴼⴰⴷ ⴰⴷ ⵜⵖⵔⵜ ⵜⴰⵡⵓⵔⵉ", backHint:"↺ ⵓⵖⵓⵍ",
+    openPanel:"ⵔⵥⵎ", panelMode:"ⵜⵉⵖⵔⵉ ⴳ ⵓⴳⴰⵍⵉⵙ", flipMode:"ⵜⵉⴽⴰⵕⴹⵉⵡⵉⵏ",
+    dpHint:"ⵙⵙⵎⵔⵙ ← → ⴰⴼⴰⴷ ⴰⴷ ⵜⵣⵔⵉⵜ ⵉⵎⵙⵎⵓⵏⵏ.",
+    demo:"ⴰⵎⴷⵢⴰ ⵏ ⵓⵙⴽⴰⵏ — ⵉⵏⵖⵎⵉⵙⵏ ⴷ ⵉⵎⴹⴰⵏⵏ ⴳⴰⵏ ⵖⴰⵙ ⵉ ⵓⵙⴽⴰⵏ.",
+    required:"ⴰⴷⵖⴰⵔ ⴰⴷ ⵉⵅⵚⵚⴰ.", emailBad:"ⵜⴰⵏⵙⴰ ⵜⴰⵍⵉⴽⵜⵕⵓⵏⵉⵜ ⵓⵔ ⵜⵖⵓⴷⵉ.",
+    sending:"ⴰⵙⵉⴼⴹ…", sent:"ⵜⴰⴼⵔⴰ ⵜⵜⵡⴰⵙⵉⴼⴹ.",
+    orgHint:"ⵙⵙⴽⵛⵎ ⵅⴼ ⵢⴰⵏ ⵓⵙⵡⵉⵔ ⴰⴼⴰⴷ ⴰⴷ ⵜⵙⵙⵏⵜ ⵜⴰⵡⵓⵔⵉ ⵏⵏⵙ.",
   }
 };
 
@@ -1025,8 +1053,17 @@ MEMBERS[0].photo = SG_PHOTO;
    PANNEAUX DE CONTENU
    ========================================================================= */
 const panel = (key, html) => '<section class="panel" id="tab-'+key+'" role="region">'+html+'</section>';
-const head  = (fr, ar) => '<h2 class="section-title">'+(LANG==="ar"?ar:fr)+'<span class="ar">'+(LANG==="ar"?fr:ar)+'</span></h2>';
-const A = (fr, ar) => LANG === "ar" ? ar : fr;
+/* Titre de section : libellé principal dans la langue courante,
+   sous-titre dans l'autre langue officielle. Le 3e argument (tifinagh)
+   est optionnel : sans lui, l'amazigh affiche le libellé français. */
+const head = (fr, ar, zgh) => {
+  const main = LANG==="ar" ? ar : LANG==="zgh" ? (zgh||fr) : fr;
+  const sub  = LANG==="ar" ? fr : ar;   /* le sous-titre montre toujours l'autre langue */
+  return '<h2 class="section-title">'+main+'<span class="ar">'+sub+'</span></h2>';
+};
+/* Texte courant. Le contenu amazigh retombe sur le français
+   tant que les traductions officielles ne sont pas fournies. */
+const A = (fr, ar, zgh) => LANG === "ar" ? ar : LANG === "zgh" ? (zgh||fr) : fr;
 
 function buildPanels(){
   let o = "";
@@ -1050,6 +1087,7 @@ function buildPanels(){
       <div class="stat-card"><div class="num">68%</div><div class="cap">${A("Membres - de 30 ans","أعضاء دون 30 سنة")}</div></div>
     </div>
     <div class="demo-badge">${t().demo}</div>
+    ${LANG==="zgh" ? '<div class="lang-notice">ⵜⵓⵜⵍⴰⵢⵜ ⵜⴰⵎⴰⵣⵉⵖⵜ: ⵜⴰⵙⵎⵎⴰⵍⵜ ⵖⴰⵙ. ⵉⵏⵖⵎⵉⵙⵏ ⵉⵖⵣⵣⵉⴼⵏ ⴰⵔ ⵜⵜⵡⴰⵙⵓⵖⵍⵏ. — Interface traduite en amazigh ; les contenus longs et les missions officielles sont en cours de traduction.</div>' : ''}
     ` + head("À la une","أبرز الأخبار") + `
     <div class="grid3">
       <div class="news-card"><div class="news-thumb g1"></div><div class="news-body"><div class="news-cat">${A("Congrès","المؤتمر")}</div><div class="news-title">${A("14ᵉ Congrès national : une nouvelle direction élue à Salé","المؤتمر الوطني الرابع عشر: انتخاب قيادة جديدة بسلا")}</div><div class="news-date">${A("11 juillet 2026","11 يوليوز 2026")}</div></div></div>
@@ -1089,7 +1127,7 @@ function buildPanels(){
           <option value="all">${t().allPoles}</option>
           __POLE_OPTIONS__
         </select>
-        <button class="mode-btn" id="modeBtn" aria-pressed="false">${A("Lecture en panneau","القراءة في لوحة")}</button>
+        <button class="mode-btn" id="modeBtn" aria-pressed="false">${t().panelMode}</button>
       </div>
       <div class="bureau-count" id="bureauCount" aria-live="polite"></div>
     </div>
@@ -1255,14 +1293,17 @@ function closeModal(){
 let LANG = "fr";
 const t = () => UI[LANG];
 const L = (o, k) => LANG === "ar" ? (o[k+"Ar"] || o.ar || o[k]) : (o[k+"Fr"] || o.fr || o[k]);
+/* Libellé d'une entrée de menu dans la langue courante.
+   L'amazigh retombe sur le français si la traduction manque. */
+const lbl = o => (LANG === "ar" ? o.ar : LANG === "zgh" ? (o.zgh || o.fr) : o.fr);
 
 /* ---------- navigation ---------- */
 function renderNav(){
   document.getElementById('mainnav').innerHTML = MENU.map(g => {
     const subs = g.children.map(c =>
-      '<button role="menuitem" data-key="'+c.key+'">'+(LANG==="ar"?c.ar:c.fr)+'</button>').join("");
+      '<button role="menuitem" data-key="'+c.key+'">'+lbl(c)+'</button>').join("");
     return '<div class="navitem" data-group="'+g.id+'">'+
-      '<button class="navlabel" aria-haspopup="true" aria-expanded="false">'+(LANG==="ar"?g.ar:g.fr)+' ▾</button>'+
+      '<button class="navlabel" aria-haspopup="true" aria-expanded="false">'+lbl(g)+' ▾</button>'+
       '<div class="dropdown" role="menu">'+subs+'</div></div>';
   }).join("");
 
@@ -1292,9 +1333,9 @@ document.addEventListener('click', closeAllDropdowns);
 function renderMobileMenu(){
   document.getElementById('mmBody').innerHTML = MENU.map((g,i) =>
     '<div class="mm-group">'+
-      '<button class="mm-toggle" aria-expanded="false" data-i="'+i+'">'+(LANG==="ar"?g.ar:g.fr)+'<span aria-hidden="true">+</span></button>'+
+      '<button class="mm-toggle" aria-expanded="false" data-i="'+i+'">'+lbl(g)+'<span aria-hidden="true">+</span></button>'+
       '<div class="mm-sub" id="mmsub'+i+'">'+
-        g.children.map(c => '<button data-key="'+c.key+'">'+(LANG==="ar"?c.ar:c.fr)+'</button>').join("")+
+        g.children.map(c => '<button data-key="'+c.key+'">'+lbl(c)+'</button>').join("")+
       '</div></div>').join("");
 
   document.querySelectorAll('.mm-toggle').forEach(btn => {
@@ -1333,7 +1374,7 @@ function crumbFor(key){
   for (const g of MENU){
     const c = g.children.find(c => c.key === key);
     if (c) return '<button data-home="1">'+t().home+'</button> <span style="color:var(--line);">/</span> '+
-      (LANG==="ar"?g.ar:g.fr)+' <span style="color:var(--line);">/</span> <b>'+(LANG==="ar"?c.ar:c.fr)+'</b>';
+      lbl(g)+' <span style="color:var(--line);">/</span> <b>'+lbl(c)+'</b>';
   }
   return '';
 }
@@ -1563,7 +1604,7 @@ window.addEventListener('resize', () => { if (selectedMember) renderDetail(); })
 function searchIndex(){
   const idx = [];
   MENU.forEach(g => g.children.forEach(c =>
-    idx.push({ type:'page', key:c.key, title:(LANG==="ar"?c.ar:c.fr), sub:(LANG==="ar"?g.ar:g.fr) })));
+    idx.push({ type:'page', key:c.key, title:lbl(c), sub:lbl(g) })));
   MEMBERS.forEach(m => idx.push({ type:'member', key:'gouvernance', id:m.id,
     title: LANG==="ar" ? m.ar : m.fr, sub:(LANG==="ar"?POLES[m.pole][1]:POLES[m.pole][0]) }));
   return idx;
@@ -1629,6 +1670,8 @@ function initForm(){
 function setLang(l){
   LANG = l;
   document.documentElement.lang = l;
+  /* L'arabe s'écrit de droite à gauche ; le tifinagh, comme le français,
+     s'écrit de gauche à droite. */
   document.documentElement.dir = (l === 'ar') ? 'rtl' : 'ltr';
   document.querySelectorAll('.lang-switch button').forEach(b => b.classList.toggle('on', b.dataset.l === l));
   const cur = keyFromHash();
@@ -1640,8 +1683,8 @@ function setLang(l){
 function setTxt(id, v){ const e = document.getElementById(id); if (e) e.textContent = v; }
 function setAttr(id, a, v){ const e = document.getElementById(id); if (e) e.setAttribute(a, v); }
 function renderStatic(){
-  setTxt('brandName', LANG==="ar" ? UI.ar.brandFr : UI.fr.brandFr);
-  setTxt('brandSub',  LANG==="ar" ? UI.fr.brandFr : UI.ar.brandFr);
+  setTxt('brandName', UI[LANG].brandFr);
+  setTxt('brandSub',  LANG==="fr" ? UI.ar.brandFr : UI.fr.brandFr);
   setTxt('taglineTop', t().tagline);
   setTxt('btnMember', t().member);
   setTxt('btnJoin', t().join);
