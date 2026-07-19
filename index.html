@@ -193,8 +193,15 @@
      Les faces sont des <span> dans un <button> : leur display doit être forcé. */
   .flip{ perspective:1000px; height:300px; background:none; border:none; padding:0; cursor:pointer; font-family:inherit; display:block; width:100%; }
   .flip-inner{ position:relative; display:block; width:100%; height:100%; transition:transform .6s; transform-style:preserve-3d; }
-  .flip:hover .flip-inner, .flip:focus-visible .flip-inner, .flip.turned .flip-inner{ transform:rotateY(180deg); }
-  html[dir="rtl"] .flip:hover .flip-inner,
+  /* Pivot au survol : uniquement là où il existe un vrai pointeur (souris).
+     Sur écran tactile, le navigateur simule un survol persistant après le
+     toucher, ce qui empêche la carte de revenir à l'endroit — d'où ce filtre. */
+  @media (hover:hover) and (pointer:fine){
+    .flip:hover .flip-inner{ transform:rotateY(180deg); }
+    html[dir="rtl"] .flip:hover .flip-inner{ transform:rotateY(-180deg); }
+  }
+  /* Pivot au clic, au toucher et au clavier : disponible partout. */
+  .flip:focus-visible .flip-inner, .flip.turned .flip-inner{ transform:rotateY(180deg); }
   html[dir="rtl"] .flip:focus-visible .flip-inner,
   html[dir="rtl"] .flip.turned .flip-inner{ transform:rotateY(-180deg); }
   .face{ position:absolute; inset:0; backface-visibility:hidden; -webkit-backface-visibility:hidden; border-radius:14px; padding:22px 18px; display:flex; flex-direction:column; align-items:center; justify-content:center; overflow:hidden; }
@@ -1056,11 +1063,12 @@ const panel = (key, html) => '<section class="panel" id="tab-'+key+'" role="regi
 /* Titre de section : libellé principal dans la langue courante,
    sous-titre dans l'autre langue officielle. Le 3e argument (tifinagh)
    est optionnel : sans lui, l'amazigh affiche le libellé français. */
-const head = (fr, ar, zgh) => {
-  const main = LANG==="ar" ? ar : LANG==="zgh" ? (zgh||fr) : fr;
-  const sub  = LANG==="ar" ? fr : ar;   /* le sous-titre montre toujours l'autre langue */
-  return '<h2 class="section-title">'+main+'<span class="ar">'+sub+'</span></h2>';
-};
+/* Titre de section, uniquement dans la langue courante.
+   Le doublon bilingue de la v1 est supprimé : en français on ne veut pas
+   d'arabe sous chaque titre, et inversement. Le 3e argument (tifinagh)
+   est optionnel ; sans lui, l'amazigh retombe sur le français. */
+const head = (fr, ar, zgh) =>
+  '<h2 class="section-title">'+(LANG==="ar" ? ar : LANG==="zgh" ? (zgh||fr) : fr)+'</h2>';
 /* Texte courant. Le contenu amazigh retombe sur le français
    tant que les traductions officielles ne sont pas fournies. */
 const A = (fr, ar, zgh) => LANG === "ar" ? ar : LANG === "zgh" ? (zgh||fr) : fr;
@@ -1073,7 +1081,7 @@ function buildPanels(){
     <div class="hero">
       <span class="tag-congres">${A("14ᵉ Congrès national — Salé, 10-11 juillet 2026","المؤتمر الوطني الرابع عشر — سلا، 10 و11 يوليوز 2026")}</span>
       <h1>${A("L'autonomisation maintenant","التمكين الآن")}</h1>
-      <div class="ar">${A("التمكين الآن... نحو تعاقد مجتمعي جديد","نحو تعاقد مجتمعي جديد")}</div>
+      ${LANG==="ar" ? '<div class="ar">نحو تعاقد مجتمعي جديد</div>' : ''}
       <p>${A("Portail officiel de la Jeunesse Istiqlalienne, organe de jeunesse du Parti de l'Istiqlal. Rejoignez une nouvelle génération de militants engagés pour le Maroc de demain.","البوابة الرسمية للشبيبة الاستقلالية، المنظمة الشبابية لحزب الاستقلال. انضم إلى جيل جديد من المناضلين الملتزمين بمغرب الغد.")}</p>
       <div class="btns">
         <button class="btn btn-primary" data-goto="ecrire">${A("Rejoindre l'organisation","انضم إلى المنظمة")}</button>
@@ -1104,7 +1112,7 @@ function buildPanels(){
       <button class="sg-avatar" id="sgAvatar" aria-label="${A("Agrandir la photo du Secrétaire Général","تكبير صورة الكاتب العام")}"><img src="__SG__" alt="Mansour Lambarki" style="width:100%;height:100%;border-radius:50%;object-fit:cover;"></button>
       <div class="sg-info">
         <div class="name">${A("Mansour Lambarki","منصور لمباركي")}</div>
-        <div class="role">${A("Secrétaire Général","الكاتب العام")} <span class="ar">${A("الكاتب العام","Secrétaire Général")}</span></div>
+        <div class="role">${A("Secrétaire Général","الكاتب العام","ⴰⵎⴰⵔⴰ ⴰⵎⴰⵜⴰⵢ")}</div>
         <div class="bio">${A("Élu à l'unanimité au poste de Secrétaire Général de la Jeunesse Istiqlalienne lors du 14ᵉ Congrès national.","انتُخب بالإجماع كاتباً عاماً للشبيبة الاستقلالية خلال المؤتمر الوطني الرابع عشر.")}</div>
         <div class="hint">${A("Cliquez sur la photo pour l'agrandir","انقر على الصورة لتكبيرها")}</div>
       </div>
@@ -1117,7 +1125,7 @@ function buildPanels(){
     </div>
 
     ` + head("Bureau exécutif — 14ᵉ mandature","المكتب التنفيذي — الولاية 14") + `
-    <p class="lead" style="margin-bottom:6px;">${A("Cliquez sur une carte pour lire la mission officielle du membre au dos.","انقر على أي بطاقة لقراءة المهمة الرسمية للعضو في الوجه الخلفي.")}</p>
+    <p class="lead" style="margin-bottom:6px;">${A("Survolez ou touchez une carte pour lire la mission officielle du membre au dos.","مرّر أو انقر على أي بطاقة لقراءة المهمة الرسمية للعضو في الوجه الخلفي.","ⵙⵙⴽⵛⵎ ⵅⴼ ⵜⴽⴰⵕⴹⴰ ⴰⴼⴰⴷ ⴰⴷ ⵜⵖⵔⵜ ⵜⴰⵡⵓⵔⵉ ⵜⵓⵏⵚⵉⴱⵜ.")}</p>
     <div class="bureau-toolbar">
       <div class="toolbar-left">
         <label class="sr-only" for="bureauSearch">${A("Rechercher un membre","البحث عن عضو")}</label>
