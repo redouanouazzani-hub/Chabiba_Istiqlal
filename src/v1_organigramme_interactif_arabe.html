@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الهيكل التنظيمي التفاعلي - الشبيبة الاستقلالية</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #8b1c31;
+            --secondary: #2c3e50;
+            --light: #f8f9fa;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Tajawal', sans-serif; background-color: var(--light); padding: 40px 20px; direction: rtl; }
+        .container { max-width: 1200px; margin: 0 auto; text-align: center; }
+        h1 { color: var(--primary); font-size: 2.3rem; font-weight: 800; margin-bottom: 10px; }
+        p.subtitle { color: #7f8c8d; font-size: 1.1rem; margin-bottom: 30px; }
+        .instruction { color: var(--primary); font-size: 1.1rem; margin-bottom: 40px; background: #fff; padding: 15px; border-radius: 8px; border: 2px dashed var(--primary); display: inline-block; font-weight: bold; }
+        
+        .grid-members {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        /* بطاقات الفليب ثلاثية الأبعاد */
+        .flip-card {
+            background-color: transparent;
+            width: 100%;
+            height: 340px;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        .flip-card:hover .flip-card-inner,
+        .flip-card.clicked .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .flip-card-front {
+            background-color: #ffffff;
+        }
+
+        .photo-wrapper {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+            border: 3px solid #ecf0f1;
+            overflow: hidden;
+            background: #eee;
+        }
+
+        .photo-wrapper img { width: 100%; height: 100%; object-fit: cover; }
+        .member-name { font-size: 1.3rem; color: var(--secondary); margin-bottom: 5px; font-weight: 700; }
+        .member-role { font-size: 0.95rem; font-weight: bold; text-transform: uppercase; }
+        .click-hint { font-size: 0.85rem; color: #7f8c8d; margin-top: 15px; font-weight: bold; background: #f1f2f6; padding: 5px 15px; border-radius: 20px; }
+
+        .flip-card-back {
+            background-color: var(--primary);
+            color: white;
+            transform: rotateY(180deg);
+            border: 2px solid var(--primary);
+        }
+
+        .mission-title {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            border-bottom: 2px solid rgba(255,255,255,0.3);
+            padding-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .mission-text {
+            font-size: 1rem;
+            line-height: 1.6;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>المكتب التنفيذي للشبيبة الاستقلالية</h1>
+    <p class="subtitle">الهيكل التنظيمي والمهام الرسمية للأعضاء - الولاية التنظيمية (2026)</p>
+    
+    <div class="instruction">
+        👆 اضغط على بطاقة أي عضو (أو مرر الفأرة فوقها) لكي تدور وتظهر لك مهامه ومسؤولياته الرسمية داخل المكتب فوراً!
+    </div>
+
+    <div class="grid-members">
+        
+    <div class="flip-card" onclick="this.classList.toggle('clicked')">
+        <div class="flip-card-inner">
+            <!-- الوجه الأمامي: الصورة والاسم -->
+            <div class="flip-card-front" style="border-top: 5px solid #8b1c31;">
+                <div class="photo-wrapper">
+                    <img src="https://ui-avatars.com/api/?name=%D9%85%D9%86%D8%B5%D9%88%D8%B1%2B%D9%84%D9%85%D8%A8%D8%A7%D8%B1%D9%83%D9%8A&background=8b1c31&color=fff&size=150" alt="منصور لمباركي">
+                </div>
+                <h3 class="member-name">منصور لمباركي</h3>
+                <p class="member-role" style="color: #8b1c31;">الكاتب العام</p>
+                <div class="click-hint">🔄 إضغط لرؤية المهمة</div>
+            </div>
+            
+            <!-- الوجه الخلفي: المهمة -->
+            <div class="flip-card-back">
+                <h3 class="mission-title">المهمة الرسمية :</h3>
+                <p class="mission-text">التمثيل القانوني والسياسي الأسمى للمنظمة. المسؤول عن تنفيذ الاستراتيجية الوطنية المصادق عليها في المؤتمر الـ14، والتنسيق مع القيادة التنفيذية لحزب الاستقلال، والمصادقة النهائية على جميع قرارات الشبيبة.</p>
+                <div class="click-hint" style="color: #fff; opacity: 0.8; margin-top:15px; background: rgba(0,0,0,0.2);">🔄 عودة</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="flip-card" onclick="this.classList.toggle('clicked')">
+        <div class="flip-card-inner">
+            <!-- الوجه الأمامي: الصورة والاسم -->
+            <div class="flip-card-front" style="border-top: 5px solid #2c3e50;">
+                <div class="photo-wrapper">
+                    <img src="https://ui-avatars.com/api/?name=%D9%84%D8%A7%D9%84%D8%A9%2B%D9%87%D9%86%D8%AF%2B%D9%88%D9%84%D8%AF%2B%D8%A7%D9%84%D8%B1%D8%B4%D9%8A%D8%AF&background=2c3e50&color=fff&size=150" alt="لالة هند ولد الرشيد">
+                </div>
+                <h3 class="member-name">لالة هند ولد الرشيد</h3>
+                <p class="member-role" style="color: #2c3e50;">عضو المكتب التنفيذي</p>
+                <div class="click-hint">🔄 إضغط لرؤية المهمة</div>
+            </div>
+            
+            <!-- الوجه الخلفي: المهمة -->
+            <div class="flip-card-back">
+                <h3 class="mission-title">المهمة الرسمية :</h3>
+                <p class="mission-text">الإشراف على تنسيق شؤون الشباب بالأقاليم الجنوبية، وتنشيط العلاقات والمنصات الجمعوية النسائية الجهوية بالصحراء المغربية.</p>
+                <div class="click-hint" style="color: #fff; opacity: 0.8; margin-top:15px; background: rgba(0,0,0,0.2);">🔄 عودة</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="flip-card" onclick="this.classList.toggle('clicked')">
+        <div class="flip-card-inner">
+            <!-- الوجه الأمامي: الصورة والاسم -->
+            <div class="flip-card-front" style="border-top: 5px solid #2c3e50;">
+                <div class="photo-wrapper">
+                    <img src="https://ui-avatars.com/api/?name=%D9%85%D8%B1%D9%88%D9%89%2B%D8%A7%D9%84%D8%A3%D9%86%D8%B5%D8%A7%D8%B1%D9%8A&background=2c3e50&color=fff&size=150" alt="مروى الأنصاري">
+                </div>
+                <h3 class="member-name">مروى الأنصاري</h3>
+                <p class="member-role" style="color: #2c3e50;">عضو المكتب التنفيذي</p>
+                <div class="click-hint">🔄 إضغط لرؤية المهمة</div>
+            </div>
+            
+            <!-- الوجه الخلفي: المهمة -->
+            <div class="flip-card-back">
+                <h3 class="mission-title">المهمة الرسمية :</h3>
+                <p class="mission-text">المسؤولة عن قطب الشؤون الدولية، والشراكات الاستراتيجية مع منظمات الشباب العالمية، وتمثيل الشبيبة الاستقلالية في المحافل الدولية.</p>
+                <div class="click-hint" style="color: #fff; opacity: 0.8; margin-top:15px; background: rgba(0,0,0,0.2);">🔄 عودة</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="flip-card" onclick="this.classList.toggle('clicked')">
+        <div class="flip-card-inner">
+            <!-- الوجه الأمامي: الصورة والاسم -->
+            <div class="flip-card-front" style="border-top: 5px solid #2c3e50;">
+                <div class="photo-wrapper">
+                    <img src="https://ui-avatars.com/api/?name=%D8%B3%D8%A7%D8%B1%D8%A9%2B%D8%A8%D9%88%D9%81%D9%8A&background=2c3e50&color=fff&size=150" alt="سارة بوفي">
+                </div>
+                <h3 class="member-name">سارة بوفي</h3>
+                <p class="member-role" style="color: #2c3e50;">عضو المكتب التنفيذي</p>
+                <div class="click-hint">🔄 إضغط لرؤية المهمة</div>
+            </div>
+            
+            <!-- الوجه الخلفي: المهمة -->
+            <div class="flip-card-back">
+                <h3 class="mission-title">المهمة الرسمية :</h3>
+                <p class="mission-text">إدارة قطب التواصل الرقمي، والإشراف على الشبكات الاجتماعية الرسمية والتغطية الإعلامية للأنشطة اليومية للمكتب التنفيذي.</p>
+                <div class="click-hint" style="color: #fff; opacity: 0.8; margin-top:15px; background: rgba(0,0,0,0.2);">🔄 عودة</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="flip-card" onclick="this.classList.toggle('clicked')">
+        <div class="flip-card-inner">
+            <!-- الوجه الأمامي: الصورة والاسم -->
+            <div class="flip-card-front" style="border-top: 5px solid #2c3e50;">
+                <div class="photo-wrapper">
+                    <img src="https://ui-avatars.com/api/?name=%D8%A8%D8%B4%D8%B1%D9%89%2B%D8%A8%D9%8A%D8%A7%D8%B6&background=2c3e50&color=fff&size=150" alt="بشرى بياض">
+                </div>
+                <h3 class="member-name">بشرى بياض</h3>
+                <p class="member-role" style="color: #2c3e50;">عضو المكتب التنفيذي</p>
+                <div class="click-hint">🔄 إضغط لرؤية المهمة</div>
+            </div>
+            
+            <!-- الوجه الخلفي: المهمة -->
+            <div class="flip-card-back">
+                <h3 class="mission-title">المهمة الرسمية :</h3>
+                <p class="mission-text">تأطير ومواكبة المبادرات الموجهة للإدماج الاقتصادي للخريجين الشباب، والتنسيق مع الهيئات المهنية والحرفية.</p>
+                <div class="click-hint" style="color: #fff; opacity: 0.8; margin-top:15px; background: rgba(0,0,0,0.2);">🔄 عودة</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="flip-card" onclick="this.classList.toggle('clicked')">
+        <div class="flip-card-inner">
+            <!-- الوجه الأمامي: الصورة والاسم -->
+            <div class="flip-card-front" style="border-top: 5px solid #2c3e50;">
+                <div class="photo-wrapper">
+                    <img src="https://ui-avatars.com/api/?name=%D8%A3%D9%85%D9%8A%D9%85%D8%A9%2B%D8%AE%D8%B5%D8%A7%D9%84&background=2c3e50&color=fff&size=150" alt="أميمة خصال">
+                </div>
+                <h3 class="member-name">أميمة خصال</h3>
+                <p class="member-role" style="color: #2c3e50;">عضو المكتب التنفيذي</p>
+                <div class="click-hint">🔄 إضغط لرؤية المهمة</div>
+            </div>
+            
+            <!-- الوجه الخلفي: المهمة -->
+            <div class="flip-card-back">
+                <h3 class="mission-title">المهمة الرسمية :</h3>
+                <p class="mission-text">التنشيط الثقافي والعمل الجامعي، وتنسيق خلايا وفروع الشبيبة الاستقلالية داخل الكليات والمعاهد العليا.</p>
+                <div class="click-hint" style="color: #fff; opacity: 0.8; margin-top:15px; background: rgba(0,0,0,0.2);">🔄 عودة</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="flip-card" onclick="this.classList.toggle('clicked')">
+        <div class="flip-card-inner">
+            <!-- الوجه الأمامي: الصورة والاسم -->
+            <div class="flip-card-front" style="border-top: 5px solid #2c3e50;">
+                <div class="photo-wrapper">
+                    <img src="https://ui-avatars.com/api/?name=%D8%B3%D8%A7%D8%B1%D8%A9%2B%D8%B3%D8%B9%D9%8A%D8%AF%D9%8A&background=2c3e50&color=fff&size=150" alt="سارة سعيدي">
+                </div>
+                <h3 class="member-name">سارة سعيدي</h3>
+                <p class="member-role" style="color: #2c3e50;">عضو المكتب التنفيذي</p>
+                <div class="click-hint">🔄 إضغط لرؤية المهمة</div>
+            </div>
+            
+            <!-- الوجه الخلفي: المهمة -->
+            <div class="flip-card-back">
+                <h3 class="mission-title">المهمة الرسمية :</h3>
+                <p class="mission-text">الإشراف على برامج التكوين السياسي والقيم المواطنة الموجهة للمنخرطات والمنخرطين الجدد بالمنظمة.</p>
+                <div class="click-hint" style="color: #fff; opacity: 0.8; margin-top:15px; background: rgba(0,0,0,0.2);">🔄 عودة</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="flip-card" onclick="this.classList.toggle('clicked')">
+        <div class="flip-card-inner">
+            <!-- الوجه الأمامي: الصورة والاسم -->
+            <div class="flip-card-front" style="border-top: 5px solid #2c3e50;">
+                <div class="photo-wrapper">
+                    <img src="https://ui-avatars.com/api/?name=%D8%B5%D9%88%D9%81%D9%8A%D8%A7%2B%D8%B3%D8%B9%D9%88%D8%AF%D9%8A&background=2c3e50&color=fff&size=150" alt="صوفيا سعودي">
+                </div>
+                <h3 class="member-name">صوفيا سعودي</h3>
+                <p class="member-role" style="color: #2c3e50;">عضو المكتب التنفيذي</p>
+                <div class="click-hint">🔄 إضغط لرؤية المهمة</div>
+            </div>
+            
+            <!-- الوجه الخلفي: المهمة -->
+            <div class="flip-card-back">
+                <h3 class="mission-title">المهمة الرسمية :</h3>
+                <p class="mission-text">عضو لجنة إدارة &#x27;أكاديمية الاستقلال للشباب&#x27;، وتطوير مناهج التكوين الرقمي والتعليم التفاعلي عن بعد.</p>
+                <div class="click-hint" style="color: #fff; opacity: 0.8; margin-top:15px; background: rgba(0,0,0,0.2);">🔄 عودة</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="flip-card" onclick="this.classList.toggle('clicked')">
+        <div class="flip-card-inner">
+            <!-- الوجه الأمامي: الصورة والاسم -->
+            <div class="flip-card-front" style="border-top: 5px solid #2c3e50;">
+                <div class="photo-wrapper">
+                    <img src="https://ui-avatars.com/api/?name=%D8%B2%D9%87%D8%B1%D8%A7%D8%A1%2B%D8%A3%D9%86%D8%AF%D9%88%D8%B1&background=2c3e50&color=fff&size=150" alt="زهراء أندور">
+                </div>
+                <h3 class="member-name">زهراء أندور</h3>
+                <p class="member-role" style="color: #2c3e50;">عضو المكتب التنفيذي</p>
+                <div class="click-hint">🔄 إضغط لرؤية المهمة</div>
+            </div>
+            
+            <!-- الوجه الخلفي: المهمة -->
+            <div class="flip-card-back">
+                <h3 class="mission-title">المهمة الرسمية :</h3>
+                <p class="mission-text">تتبع الملفات المتعلقة بالمناصفة، وحقوق المرأة، وتعزيز تمثيلية الشابات داخل المجالس الجماعية والترابية.</p>
+                <div class="click-hint" style="color: #fff; opacity: 0.8; margin-top:15px; background: rgba(0,0,0,0.2);">🔄 عودة</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="flip-card" onclick="this.classList.toggle('clicked')">
+        <div class="flip-card-inner">
+            <!-- الوجه الأمامي: الصورة والاسم -->
+            <div class="flip-card-front" style="border-top: 5px solid #2c3e50;">
+                <div class="photo-wrapper">
+                    <img src="https://ui-avatars.com/api/?name=%D9%81%D8%A7%D8%B7%D9%85%D8%A9%2B%D8%A7%D9%84%D8%B2%D9%87%D8%B1%D8%A7%D8%A1%2B%D8%A7%D9%84%D8%AF%D8%A7%D9%88%D8%AF%D9%8A&background=2c3e50&color=fff&size=150" alt="فاطمة الزهراء الداودي">
+                </div>
+                <h3 class="member-name">فاطمة الزهراء الداودي</h3>
+                <p class="member-role" style="color: #2c3e50;">عضو المكتب التنفيذي</p>
+                <div class="click-hint">🔄 إضغط لرؤية المهمة</div>
+            </div>
+            
+            <!-- الوجه الخلفي: المهمة -->
+            <div class="flip-card-back">
+                <h3 class="mission-title">المهمة الرسمية :</h3>
+                <p class="mission-text">التنسيق الجهوي للأنشطة السوسيو-تربوية، ومبادرات التضامن والقرب في الأوساط شبه الحضرية والقروية.</p>
+                <div class="click-hint" style="color: #fff; opacity: 0.8; margin-top:15px; background: rgba(0,0,0,0.2);">🔄 عودة</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="flip-card" onclick="this.classList.toggle('clicked')">
+        <div class="flip-card-inner">
+            <!-- الوجه الأمامي: الصورة والاسم -->
+            <div class="flip-card-front" style="border-top: 5px solid #2c3e50;">
+                <div class="photo-wrapper">
+                    <img src="https://ui-avatars.com/api/?name=%D8%AD%D9%85%D8%B2%D8%A9%2B%D9%83%D9%88%D8%A7%D8%B4%D9%8A&background=2c3e50&color=fff&size=150" alt="حمزة كواشي">
+                </div>
+                <h3 class="member-name">حمزة كواشي</h3>
+                <p class="member-role" style="color: #2c3e50;">عضو المكتب التنفيذي</p>
+                <div class="click-hint">🔄 إضغط لرؤية المهمة</div>
+            </div>
+            
+            <!-- الوجه الخلفي: المهمة -->
+            <div class="flip-card-back">
+                <h3 class="mission-title">المهمة الرسمية :</h3>
+                <p class="mission-text">الإشراف على اللوجستيك وتنظيم التظاهرات الوطنية الكبرى، والجامعات الصيفية والمؤتمرات الجهوية.</p>
+                <div class="click-hint" style="color: #fff; opacity: 0.8; margin-top:15px; background: rgba(0,0,0,0.2);">🔄 عودة</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="flip-card" onclick="this.classList.toggle('clicked')">
+        <div class="flip-card-inner">
+            <!-- الوجه الأمامي: الصورة والاسم -->
+            <div class="flip-card-front" style="border-top: 5px solid #2c3e50;">
+                <div class="photo-wrapper">
+                    <img src="https://ui-avatars.com/api/?name=%D8%B9%D8%A8%D9%8A%D8%AF%2B%D8%A8%D9%88%D9%83%D8%A7%D8%B1%D9%86%2B%D9%85%D8%A7%D8%A1%2B%D8%A7%D9%84%D8%B9%D9%8A%D9%86%D9%8A%D9%86&background=2c3e50&color=fff&size=150" alt="عبيد بوكارن ماء العينين">
+                </div>
+                <h3 class="member-name">عبيد بوكارن ماء العينين</h3>
+                <p class="member-role" style="color: #2c3e50;">عضو المكتب التنفيذي</p>
+                <div class="click-hint">🔄 إضغط لرؤية المهمة</div>
+            </div>
+            
+            <!-- الوجه الخلفي: المهمة -->
+            <div class="flip-card-back">
+                <h3 class="mission-title">المهمة الرسمية :</h3>
+                <p class="mission-text">المسؤول عن تتبع امتداد الفروع الإقليمية، ومواكبة وتأطير عمليات تجديد المكاتب المحلية عبر ربوع المملكة.</p>
+                <div class="click-hint" style="color: #fff; opacity: 0.8; margin-top:15px; background: rgba(0,0,0,0.2);">🔄 عودة</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="flip-card" onclick="this.classList.toggle('clicked')">
+        <div class="flip-card-inner">
+            <!-- الوجه الأمامي: الصورة والاسم -->
+            <div class="flip-card-front" style="border-top: 5px solid #2c3e50;">
+                <div class="photo-wrapper">
+                    <img src="https://ui-avatars.com/api/?name=%D8%A7%D9%84%D8%A8%D8%B4%D9%8A%D8%B1%2B%D8%B9%D8%A8%D8%A7&background=2c3e50&color=fff&size=150" alt="البشير عبا">
+                </div>
+                <h3 class="member-name">البشير عبا</h3>
+                <p class="member-role" style="color: #2c3e50;">عضو المكتب التنفيذي</p>
+                <div class="click-hint">🔄 إضغط لرؤية المهمة</div>
+            </div>
+            
+            <!-- الوجه الخلفي: المهمة -->
+            <div class="flip-card-back">
+                <h3 class="mission-title">المهمة الرسمية :</h3>
+                <p class="mission-text">إدارة قطب التحليل السياسي، وصياغة البيانات الرسمية، والمناشير الإيديولوجية، وبلاغات المكتب التنفيذي.</p>
+                <div class="click-hint" style="color: #fff; opacity: 0.8; margin-top:15px; background: rgba(0,0,0,0.2);">🔄 عودة</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="flip-card" onclick="this.classList.toggle('clicked')">
+        <div class="flip-card-inner">
+            <!-- الوجه الأمامي: الصورة والاسم -->
+            <div class="flip-card-front" style="border-top: 5px solid #2c3e50;">
+                <div class="photo-wrapper">
+                    <img src="https://ui-avatars.com/api/?name=%D9%85%D8%AD%D9%85%D8%AF%2B%D9%84%D8%BA%D8%B6%D9%81%2B%D8%B4%D8%B1%D9%8A%D9%81&background=2c3e50&color=fff&size=150" alt="محمد لغضف شريف">
+                </div>
+                <h3 class="member-name">محمد لغضف شريف</h3>
+                <p class="member-role" style="color: #2c3e50;">عضو المكتب التنفيذي</p>
+                <div class="click-hint">🔄 إضغط لرؤية المهمة</div>
+            </div>
+            
+            <!-- الوجه الخلفي: المهمة -->
+            <div class="flip-card-back">
+                <h3 class="mission-title">المهمة الرسمية :</h3>
+                <p class="mission-text">التنسيق والربط بين المنتخبين الشباب باسم حزب الاستقلال في المجالس الجماعية والجهوية لدعم السياسات المحلية للشباب.</p>
+                <div class="click-hint" style="color: #fff; opacity: 0.8; margin-top:15px; background: rgba(0,0,0,0.2);">🔄 عودة</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="flip-card" onclick="this.classList.toggle('clicked')">
+        <div class="flip-card-inner">
+            <!-- الوجه الأمامي: الصورة والاسم -->
+            <div class="flip-card-front" style="border-top: 5px solid #2c3e50;">
+                <div class="photo-wrapper">
+                    <img src="https://ui-avatars.com/api/?name=%D9%88%D8%B3%D9%8A%D9%85%2B%D9%83%D8%B1%D9%8A%D9%85%D9%8A&background=2c3e50&color=fff&size=150" alt="وسيم كريمي">
+                </div>
+                <h3 class="member-name">وسيم كريمي</h3>
+                <p class="member-role" style="color: #2c3e50;">عضو المكتب التنفيذي</p>
+                <div class="click-hint">🔄 إضغط لرؤية المهمة</div>
+            </div>
+            
+            <!-- الوجه الخلفي: المهمة -->
+            <div class="flip-card-back">
+                <h3 class="mission-title">المهمة الرسمية :</h3>
+                <p class="mission-text">إدارة البرامج الرياضية وشؤون الطفولة، والترتيب مع جمعيات المجتمع المدني الفاعلة في مجال المواطنة.</p>
+                <div class="click-hint" style="color: #fff; opacity: 0.8; margin-top:15px; background: rgba(0,0,0,0.2);">🔄 عودة</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="flip-card" onclick="this.classList.toggle('clicked')">
+        <div class="flip-card-inner">
+            <!-- الوجه الأمامي: الصورة والاسم -->
+            <div class="flip-card-front" style="border-top: 5px solid #2c3e50;">
+                <div class="photo-wrapper">
+                    <img src="https://ui-avatars.com/api/?name=%D9%8A%D9%88%D9%86%D8%B3%2B%D8%B9%D9%85%D9%8A%D9%85%D9%8A&background=2c3e50&color=fff&size=150" alt="يونس عميمي">
+                </div>
+                <h3 class="member-name">يونس عميمي</h3>
+                <p class="member-role" style="color: #2c3e50;">عضو المكتب التنفيذي</p>
+                <div class="click-hint">🔄 إضغط لرؤية المهمة</div>
+            </div>
+            
+            <!-- الوجه الخلفي: المهمة -->
+            <div class="flip-card-back">
+                <h3 class="mission-title">المهمة الرسمية :</h3>
+                <p class="mission-text">التدبير الإداري المركزي، والسهر على الأرشيف العام للمنظمة، وتدوين محاضر الاجتماعات الرسمية للمكتب التنفيذي.</p>
+                <div class="click-hint" style="color: #fff; opacity: 0.8; margin-top:15px; background: rgba(0,0,0,0.2);">🔄 عودة</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="flip-card" onclick="this.classList.toggle('clicked')">
+        <div class="flip-card-inner">
+            <!-- الوجه الأمامي: الصورة والاسم -->
+            <div class="flip-card-front" style="border-top: 5px solid #2c3e50;">
+                <div class="photo-wrapper">
+                    <img src="https://ui-avatars.com/api/?name=%D8%A8%D8%AF%D8%B1%2B%D9%84%D9%83%D8%B4%D9%8A%D9%84%D9%8A&background=2c3e50&color=fff&size=150" alt="بدر لكشيلي">
+                </div>
+                <h3 class="member-name">بدر لكشيلي</h3>
+                <p class="member-role" style="color: #2c3e50;">عضو المكتب التنفيذي</p>
+                <div class="click-hint">🔄 إضغط لرؤية المهمة</div>
+            </div>
+            
+            <!-- الوجه الخلفي: المهمة -->
+            <div class="flip-card-back">
+                <h3 class="mission-title">المهمة الرسمية :</h3>
+                <p class="mission-text">عضو الإدارة الثلاثية لـ &#x27;أكاديمية الاستقلال للشباب&#x27;، ومكلف بتصميم المناهج الفكرية والتأطير العقائدي للمنظمة.</p>
+                <div class="click-hint" style="color: #fff; opacity: 0.8; margin-top:15px; background: rgba(0,0,0,0.2);">🔄 عودة</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="flip-card" onclick="this.classList.toggle('clicked')">
+        <div class="flip-card-inner">
+            <!-- الوجه الأمامي: الصورة والاسم -->
+            <div class="flip-card-front" style="border-top: 5px solid #2c3e50;">
+                <div class="photo-wrapper">
+                    <img src="https://ui-avatars.com/api/?name=%D9%85%D8%AD%D9%85%D8%AF%2B%D9%85%D8%A3%D9%85%D9%88%D9%86%2B%D8%B2%D9%8A%D8%AF%D9%88%D8%AD&background=2c3e50&color=fff&size=150" alt="محمد مأمون زيدوح">
+                </div>
+                <h3 class="member-name">محمد مأمون زيدوح</h3>
+                <p class="member-role" style="color: #2c3e50;">عضو المكتب التنفيذي</p>
+                <div class="click-hint">🔄 إضغط لرؤية المهمة</div>
+            </div>
+            
+            <!-- الوجه الخلفي: المهمة -->
+            <div class="flip-card-back">
+                <h3 class="mission-title">المهمة الرسمية :</h3>
+                <p class="mission-text">تدبير العلاقات مع المركزية النقابية (الاتحاد العام للشغالين بالمغرب) وتأطير فئة الشبيبة الشغيلة والعمال الشباب.</p>
+                <div class="click-hint" style="color: #fff; opacity: 0.8; margin-top:15px; background: rgba(0,0,0,0.2);">🔄 عودة</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="flip-card" onclick="this.classList.toggle('clicked')">
+        <div class="flip-card-inner">
+            <!-- الوجه الأمامي: الصورة والاسم -->
+            <div class="flip-card-front" style="border-top: 5px solid #2c3e50;">
+                <div class="photo-wrapper">
+                    <img src="https://ui-avatars.com/api/?name=%D8%A3%D9%88%D8%AD%D8%B3%D9%8A%D9%86%2B%D8%B9%D8%A8%D8%AF%2B%D8%A7%D9%84%D8%B5%D8%A7%D8%AF%D9%82&background=2c3e50&color=fff&size=150" alt="أوحسين عبد الصادق">
+                </div>
+                <h3 class="member-name">أوحسين عبد الصادق</h3>
+                <p class="member-role" style="color: #2c3e50;">عضو المكتب التنفيذي</p>
+                <div class="click-hint">🔄 إضغط لرؤية المهمة</div>
+            </div>
+            
+            <!-- الوجه الخلفي: المهمة -->
+            <div class="flip-card-back">
+                <h3 class="mission-title">المهمة الرسمية :</h3>
+                <p class="mission-text">تتبع وتقييم السياسات العمومية القطاعية الموجهة للشباب، وإعداد المذكرات الترافعية لدى الوزارات والمؤسسات الرسمية.</p>
+                <div class="click-hint" style="color: #fff; opacity: 0.8; margin-top:15px; background: rgba(0,0,0,0.2);">🔄 عودة</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="flip-card" onclick="this.classList.toggle('clicked')">
+        <div class="flip-card-inner">
+            <!-- الوجه الأمامي: الصورة والاسم -->
+            <div class="flip-card-front" style="border-top: 5px solid #2c3e50;">
+                <div class="photo-wrapper">
+                    <img src="https://ui-avatars.com/api/?name=%D8%A7%D9%84%D9%8A%D8%B2%D9%8A%D8%AF%2B%D9%82%D9%8A%D9%88%D8%AD&background=2c3e50&color=fff&size=150" alt="اليزيد قيوح">
+                </div>
+                <h3 class="member-name">اليزيد قيوح</h3>
+                <p class="member-role" style="color: #2c3e50;">عضو المكتب التنفيذي</p>
+                <div class="click-hint">🔄 إضغط لرؤية المهمة</div>
+            </div>
+            
+            <!-- الوجه الخلفي: المهمة -->
+            <div class="flip-card-back">
+                <h3 class="mission-title">المهمة الرسمية :</h3>
+                <p class="mission-text">تنسيق تنزيل الهياكل المحلية في العالم القروي، ومواكبة المشاريع المبتكرة للشباب في قطاع الفلاحة والتنمية القروية.</p>
+                <div class="click-hint" style="color: #fff; opacity: 0.8; margin-top:15px; background: rgba(0,0,0,0.2);">🔄 عودة</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="flip-card" onclick="this.classList.toggle('clicked')">
+        <div class="flip-card-inner">
+            <!-- الوجه الأمامي: الصورة والاسم -->
+            <div class="flip-card-front" style="border-top: 5px solid #2c3e50;">
+                <div class="photo-wrapper">
+                    <img src="https://ui-avatars.com/api/?name=%D9%85%D8%AD%D9%85%D8%AF%2B%D8%A3%D9%85%D9%8A%D9%86%2B%D8%B9%D8%A8%D9%83%D8%A7%D8%B1%D9%8A&background=2c3e50&color=fff&size=150" alt="محمد أمين عبكاري">
+                </div>
+                <h3 class="member-name">محمد أمين عبكاري</h3>
+                <p class="member-role" style="color: #2c3e50;">عضو المكتب التنفيذي</p>
+                <div class="click-hint">🔄 إضغط لرؤية المهمة</div>
+            </div>
+            
+            <!-- الوجه الخلفي: المهمة -->
+            <div class="flip-card-back">
+                <h3 class="mission-title">المهمة الرسمية :</h3>
+                <p class="mission-text">المسؤول عن القطب القانوني، والمطابقة التنظيمية للقوانين الأساسية للمنظمة، ودرس الطعون الداخلية.</p>
+                <div class="click-hint" style="color: #fff; opacity: 0.8; margin-top:15px; background: rgba(0,0,0,0.2);">🔄 عودة</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="flip-card" onclick="this.classList.toggle('clicked')">
+        <div class="flip-card-inner">
+            <!-- الوجه الأمامي: الصورة والاسم -->
+            <div class="flip-card-front" style="border-top: 5px solid #2c3e50;">
+                <div class="photo-wrapper">
+                    <img src="https://ui-avatars.com/api/?name=%D8%B9%D8%A8%D8%AF%2B%D8%A7%D9%84%D8%B1%D8%B2%D8%A7%D9%82%2B%D8%B5%D8%AF%D8%B1%D9%8A&background=2c3e50&color=fff&size=150" alt="عبد الرزاق صدري">
+                </div>
+                <h3 class="member-name">عبد الرزاق صدري</h3>
+                <p class="member-role" style="color: #2c3e50;">عضو المكتب التنفيذي</p>
+                <div class="click-hint">🔄 إضغط لرؤية المهمة</div>
+            </div>
+            
+            <!-- الوجه الخلفي: المهمة -->
+            <div class="flip-card-back">
+                <h3 class="mission-title">المهمة الرسمية :</h3>
+                <p class="mission-text">الإشراف على الأنشطة الشبابية المتمحورة حول التنمية المستدامة، والبيئة، والمبادرات الصديقة للمناخ والاقتصاد الأخضر.</p>
+                <div class="click-hint" style="color: #fff; opacity: 0.8; margin-top:15px; background: rgba(0,0,0,0.2);">🔄 عودة</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="flip-card" onclick="this.classList.toggle('clicked')">
+        <div class="flip-card-inner">
+            <!-- الوجه الأمامي: الصورة والاسم -->
+            <div class="flip-card-front" style="border-top: 5px solid #2c3e50;">
+                <div class="photo-wrapper">
+                    <img src="https://ui-avatars.com/api/?name=%D9%85%D8%AD%D9%85%D8%AF%2B%D8%A7%D8%A8%D9%86%2B%D8%A5%D8%B3%D8%AD%D8%A7%D9%82&background=2c3e50&color=fff&size=150" alt="محمد ابن إسحاق">
+                </div>
+                <h3 class="member-name">محمد ابن إسحاق</h3>
+                <p class="member-role" style="color: #2c3e50;">عضو المكتب التنفيذي</p>
+                <div class="click-hint">🔄 إضغط لرؤية المهمة</div>
+            </div>
+            
+            <!-- الوجه الخلفي: المهمة -->
+            <div class="flip-card-back">
+                <h3 class="mission-title">المهمة الرسمية :</h3>
+                <p class="mission-text">تنشيط شبكات الأطر والمهندسين والخبراء الشباب المنضوين تحت لواء المنظمة لتقديم حلول تقنية وتنموية.</p>
+                <div class="click-hint" style="color: #fff; opacity: 0.8; margin-top:15px; background: rgba(0,0,0,0.2);">🔄 عودة</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="flip-card" onclick="this.classList.toggle('clicked')">
+        <div class="flip-card-inner">
+            <!-- الوجه الأمامي: الصورة والاسم -->
+            <div class="flip-card-front" style="border-top: 5px solid #2c3e50;">
+                <div class="photo-wrapper">
+                    <img src="https://ui-avatars.com/api/?name=%D9%85%D8%AD%D9%85%D8%AF%2B%D9%84%D8%B1%D9%8A%D8%A8&background=2c3e50&color=fff&size=150" alt="محمد لريب">
+                </div>
+                <h3 class="member-name">محمد لريب</h3>
+                <p class="member-role" style="color: #2c3e50;">عضو المكتب التنفيذي</p>
+                <div class="click-hint">🔄 إضغط لرؤية المهمة</div>
+            </div>
+            
+            <!-- الوجه الخلفي: المهمة -->
+            <div class="flip-card-back">
+                <h3 class="mission-title">المهمة الرسمية :</h3>
+                <p class="mission-text">تنظيم القوافل الطبية، والحملات الاجتماعية الإنسانية، وتأطير وتوجيه المتطوعين الشباب في وضعيات الطوارئ.</p>
+                <div class="click-hint" style="color: #fff; opacity: 0.8; margin-top:15px; background: rgba(0,0,0,0.2);">🔄 عودة</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="flip-card" onclick="this.classList.toggle('clicked')">
+        <div class="flip-card-inner">
+            <!-- الوجه الأمامي: الصورة والاسم -->
+            <div class="flip-card-front" style="border-top: 5px solid #2c3e50;">
+                <div class="photo-wrapper">
+                    <img src="https://ui-avatars.com/api/?name=%D9%8A%D8%A7%D8%B3%D9%8A%D9%86%2B%D8%A3%D8%AE%D8%AF%D9%8A%D9%85&background=2c3e50&color=fff&size=150" alt="ياسين أخديم">
+                </div>
+                <h3 class="member-name">ياسين أخديم</h3>
+                <p class="member-role" style="color: #2c3e50;">عضو المكتب التنفيذي</p>
+                <div class="click-hint">🔄 إضغط لرؤية المهمة</div>
+            </div>
+            
+            <!-- الوجه الخلفي: المهمة -->
+            <div class="flip-card-back">
+                <h3 class="mission-title">المهمة الرسمية :</h3>
+                <p class="mission-text">استراتيجية التواصل مع الصحافة الوطنية والدولية، وتدبير الحوارات والمقابلات الإعلامية لمهندسي مواقف المنظمة.</p>
+                <div class="click-hint" style="color: #fff; opacity: 0.8; margin-top:15px; background: rgba(0,0,0,0.2);">🔄 عودة</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="flip-card" onclick="this.classList.toggle('clicked')">
+        <div class="flip-card-inner">
+            <!-- الوجه الأمامي: الصورة والاسم -->
+            <div class="flip-card-front" style="border-top: 5px solid #2c3e50;">
+                <div class="photo-wrapper">
+                    <img src="https://ui-avatars.com/api/?name=%D9%8A%D9%88%D8%B3%D9%81%2B%D8%A3%D9%88%D8%AE%D9%84%D9%88&background=2c3e50&color=fff&size=150" alt="يوسف أوخلو">
+                </div>
+                <h3 class="member-name">يوسف أوخلو</h3>
+                <p class="member-role" style="color: #2c3e50;">عضو المكتب التنفيذي</p>
+                <div class="click-hint">🔄 إضغط لرؤية المهمة</div>
+            </div>
+            
+            <!-- الوجه الخلفي: المهمة -->
+            <div class="flip-card-back">
+                <h3 class="mission-title">المهمة الرسمية :</h3>
+                <p class="mission-text">عضو رئيسي في إدارة &#x27;أكاديمية الاستقلال للشباب&#x27;، ومكلف ببرمجة الندوات الفكرية، والمحاضرات الوطنية، واللقاءات الثقافية.</p>
+                <div class="click-hint" style="color: #fff; opacity: 0.8; margin-top:15px; background: rgba(0,0,0,0.2);">🔄 عودة</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="flip-card" onclick="this.classList.toggle('clicked')">
+        <div class="flip-card-inner">
+            <!-- الوجه الأمامي: الصورة والاسم -->
+            <div class="flip-card-front" style="border-top: 5px solid #2c3e50;">
+                <div class="photo-wrapper">
+                    <img src="https://ui-avatars.com/api/?name=%D9%85%D8%AD%D8%B3%D9%86%2B%D8%A7%D9%84%D8%A8%D9%88%D8%B2%D9%8A%D8%AF%D9%8A%2B%D8%A7%D9%84%D8%A5%D8%AF%D8%B1%D9%8A%D8%B3%D9%8A&background=2c3e50&color=fff&size=150" alt="محسن البوزيدي الإدريسي">
+                </div>
+                <h3 class="member-name">محسن البوزيدي الإدريسي</h3>
+                <p class="member-role" style="color: #2c3e50;">عضو المكتب التنفيذي</p>
+                <div class="click-hint">🔄 إضغط لرؤية المهمة</div>
+            </div>
+            
+            <!-- الوجه الخلفي: المهمة -->
+            <div class="flip-card-back">
+                <h3 class="mission-title">المهمة الرسمية :</h3>
+                <p class="mission-text">تتبع منظومة الانخراطات، وتطوير المنصة الرقمية التكنولوجية الخاصة بإصدار بطائق العضوية الذكية للمنخرطين.</p>
+                <div class="click-hint" style="color: #fff; opacity: 0.8; margin-top:15px; background: rgba(0,0,0,0.2);">🔄 عودة</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="flip-card" onclick="this.classList.toggle('clicked')">
+        <div class="flip-card-inner">
+            <!-- الوجه الأمامي: الصورة والاسم -->
+            <div class="flip-card-front" style="border-top: 5px solid #2c3e50;">
+                <div class="photo-wrapper">
+                    <img src="https://ui-avatars.com/api/?name=%D8%B2%D9%83%D8%B1%D9%8A%D8%A7%D8%A1%2B%D9%85%D8%B6%D9%8A%D8%A7%D9%86&background=2c3e50&color=fff&size=150" alt="زكرياء مضيان">
+                </div>
+                <h3 class="member-name">زكرياء مضيان</h3>
+                <p class="member-role" style="color: #2c3e50;">عضو المكتب التنفيذي</p>
+                <div class="click-hint">🔄 إضغط لرؤية المهمة</div>
+            </div>
+            
+            <!-- الوجه الخلفي: المهمة -->
+            <div class="flip-card-back">
+                <h3 class="mission-title">المهمة الرسمية :</h3>
+                <p class="mission-text">التنسيق مع منظومة الشبيبة المدرسية، وتأطير وإدماج تلاميذ التعليم الثانوي في برامج التربية على المواطنة.</p>
+                <div class="click-hint" style="color: #fff; opacity: 0.8; margin-top:15px; background: rgba(0,0,0,0.2);">🔄 عودة</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="flip-card" onclick="this.classList.toggle('clicked')">
+        <div class="flip-card-inner">
+            <!-- الوجه الأمامي: الصورة والاسم -->
+            <div class="flip-card-front" style="border-top: 5px solid #2c3e50;">
+                <div class="photo-wrapper">
+                    <img src="https://ui-avatars.com/api/?name=%D8%AD%D9%85%D8%B2%D8%A9%2B%D8%A7%D9%84%D9%85%D9%88%D8%B3%D8%A7%D9%88%D9%8A&background=2c3e50&color=fff&size=150" alt="حمزة الموساوي">
+                </div>
+                <h3 class="member-name">حمزة الموساوي</h3>
+                <p class="member-role" style="color: #2c3e50;">عضو المكتب التنفيذي</p>
+                <div class="click-hint">🔄 إضغط لرؤية المهمة</div>
+            </div>
+            
+            <!-- الوجه الخلفي: المهمة -->
+            <div class="flip-card-back">
+                <h3 class="mission-title">المهمة الرسمية :</h3>
+                <p class="mission-text">المساعدة في التدبير المالي الداخلي، ومراقبة وتدقيق نفقات التظاهرات والمؤتمرات بتنسيق مع أمين المال.</p>
+                <div class="click-hint" style="color: #fff; opacity: 0.8; margin-top:15px; background: rgba(0,0,0,0.2);">🔄 عودة</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="flip-card" onclick="this.classList.toggle('clicked')">
+        <div class="flip-card-inner">
+            <!-- الوجه الأمامي: الصورة والاسم -->
+            <div class="flip-card-front" style="border-top: 5px solid #2c3e50;">
+                <div class="photo-wrapper">
+                    <img src="https://ui-avatars.com/api/?name=%D9%8A%D8%A7%D8%B3%D9%8A%D9%86%2B%D8%A8%D9%86%D8%B5%D8%A7%D9%84%D8%AD&background=2c3e50&color=fff&size=150" alt="ياسين بنصالح">
+                </div>
+                <h3 class="member-name">ياسين بنصالح</h3>
+                <p class="member-role" style="color: #2c3e50;">عضو المكتب التنفيذي</p>
+                <div class="click-hint">🔄 إضغط لرؤية المهمة</div>
+            </div>
+            
+            <!-- الوجه الخلفي: المهمة -->
+            <div class="flip-card-back">
+                <h3 class="mission-title">المهمة الرسمية :</h3>
+                <p class="mission-text">تنظيم ورشات فن الخطابة، والآليات الحديثة للمناظرات، والمرافعة السياسية لبناء وتأطير قادة المستقبل.</p>
+                <div class="click-hint" style="color: #fff; opacity: 0.8; margin-top:15px; background: rgba(0,0,0,0.2);">🔄 عودة</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="flip-card" onclick="this.classList.toggle('clicked')">
+        <div class="flip-card-inner">
+            <!-- الوجه الأمامي: الصورة والاسم -->
+            <div class="flip-card-front" style="border-top: 5px solid #2c3e50;">
+                <div class="photo-wrapper">
+                    <img src="https://ui-avatars.com/api/?name=%D9%85%D8%AD%D9%85%D8%AF%2B%D8%A8%D9%88%D8%B4%D8%B9%D8%A7%D8%B1&background=2c3e50&color=fff&size=150" alt="محمد بوشعار">
+                </div>
+                <h3 class="member-name">محمد بوشعار</h3>
+                <p class="member-role" style="color: #2c3e50;">عضو المكتب التنفيذي</p>
+                <div class="click-hint">🔄 إضغط لرؤية المهمة</div>
+            </div>
+            
+            <!-- الوجه الخلفي: المهمة -->
+            <div class="flip-card-back">
+                <h3 class="mission-title">المهمة الرسمية :</h3>
+                <p class="mission-text">مواكبة وتنزيل ورش التحول الرقمي، وعصرنة العمل النضالي والتنظيمي للشبيبة عبر التطبيقات الحديثة.</p>
+                <div class="click-hint" style="color: #fff; opacity: 0.8; margin-top:15px; background: rgba(0,0,0,0.2);">🔄 عودة</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="flip-card" onclick="this.classList.toggle('clicked')">
+        <div class="flip-card-inner">
+            <!-- الوجه الأمامي: الصورة والاسم -->
+            <div class="flip-card-front" style="border-top: 5px solid #2c3e50;">
+                <div class="photo-wrapper">
+                    <img src="https://ui-avatars.com/api/?name=%D8%A5%D8%A8%D8%B1%D8%A7%D9%87%D9%8A%D9%85%2B%D8%A8%D8%B1%D8%AF%D9%8A%D8%AC%D9%8A&background=2c3e50&color=fff&size=150" alt="إبراهيم برديجي">
+                </div>
+                <h3 class="member-name">إبراهيم برديجي</h3>
+                <p class="member-role" style="color: #2c3e50;">عضو المكتب التنفيذي</p>
+                <div class="click-hint">🔄 إضغط لرؤية المهمة</div>
+            </div>
+            
+            <!-- الوجه الخلفي: المهمة -->
+            <div class="flip-card-back">
+                <h3 class="mission-title">المهمة الرسمية :</h3>
+                <p class="mission-text">التنسيق الميداني ودعم الفروع المحلية المتواجدة في المناطق الجبلية والنائية لضمان العدالة المجالية في أنشطة الشبيبة.</p>
+                <div class="click-hint" style="color: #fff; opacity: 0.8; margin-top:15px; background: rgba(0,0,0,0.2);">🔄 عودة</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="flip-card" onclick="this.classList.toggle('clicked')">
+        <div class="flip-card-inner">
+            <!-- الوجه الأمامي: الصورة والاسم -->
+            <div class="flip-card-front" style="border-top: 5px solid #2c3e50;">
+                <div class="photo-wrapper">
+                    <img src="https://ui-avatars.com/api/?name=%D9%85%D8%B1%D9%88%D8%A7%D9%86%2B%D8%A7%D9%84%D8%B5%D8%A7%D9%84%D8%AD%D9%8A&background=2c3e50&color=fff&size=150" alt="مروان الصالحي">
+                </div>
+                <h3 class="member-name">مروان الصالحي</h3>
+                <p class="member-role" style="color: #2c3e50;">عضو المكتب التنفيذي</p>
+                <div class="click-hint">🔄 إضغط لرؤية المهمة</div>
+            </div>
+            
+            <!-- الوجه الخلفي: المهمة -->
+            <div class="flip-card-back">
+                <h3 class="mission-title">المهمة الرسمية :</h3>
+                <p class="mission-text">التخطيط والإعداد العلمي للجامعات الربيعية، وصياغة الأوراق والتقارير المذهبية للمنظمة.</p>
+                <div class="click-hint" style="color: #fff; opacity: 0.8; margin-top:15px; background: rgba(0,0,0,0.2);">🔄 عودة</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="flip-card" onclick="this.classList.toggle('clicked')">
+        <div class="flip-card-inner">
+            <!-- الوجه الأمامي: الصورة والاسم -->
+            <div class="flip-card-front" style="border-top: 5px solid #2c3e50;">
+                <div class="photo-wrapper">
+                    <img src="https://ui-avatars.com/api/?name=%D9%81%D9%87%D8%AF%2B%D8%A7%D9%84%D8%A8%D8%B1%D9%83%D8%A7%D9%86%D9%8A&background=2c3e50&color=fff&size=150" alt="فهد البركاني">
+                </div>
+                <h3 class="member-name">فهد البركاني</h3>
+                <p class="member-role" style="color: #2c3e50;">عضو المكتب التنفيذي</p>
+                <div class="click-hint">🔄 إضغط لرؤية المهمة</div>
+            </div>
+            
+            <!-- الوجه الخلفي: المهمة -->
+            <div class="flip-card-back">
+                <h3 class="mission-title">المهمة الرسمية :</h3>
+                <p class="mission-text">الإشراف على قطب ريادة الأعمال للشباب، والابتكار الاجتماعي، ودعم حاضنات المشاريع والمقاولات الناشئة للشباب.</p>
+                <div class="click-hint" style="color: #fff; opacity: 0.8; margin-top:15px; background: rgba(0,0,0,0.2);">🔄 عودة</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="flip-card" onclick="this.classList.toggle('clicked')">
+        <div class="flip-card-inner">
+            <!-- الوجه الأمامي: الصورة والاسم -->
+            <div class="flip-card-front" style="border-top: 5px solid #2c3e50;">
+                <div class="photo-wrapper">
+                    <img src="https://ui-avatars.com/api/?name=%D8%AD%D8%B3%D9%86%2B%D8%AD%D9%85%D8%AF%D9%88%D9%86&background=2c3e50&color=fff&size=150" alt="حسن حمدون">
+                </div>
+                <h3 class="member-name">حسن حمدون</h3>
+                <p class="member-role" style="color: #2c3e50;">عضو المكتب التنفيذي</p>
+                <div class="click-hint">🔄 إضغط لرؤية المهمة</div>
+            </div>
+            
+            <!-- الوجه الخلفي: المهمة -->
+            <div class="flip-card-back">
+                <h3 class="mission-title">المهمة الرسمية :</h3>
+                <p class="mission-text">تدبير وتنشيط العلاقات مع مغاربة العالم، وتأسيس وتأطير فروع الشبيبة الاستقلالية في الخارج (أوروبا، أمريكا، وغيرها).</p>
+                <div class="click-hint" style="color: #fff; opacity: 0.8; margin-top:15px; background: rgba(0,0,0,0.2);">🔄 عودة</div>
+            </div>
+        </div>
+    </div>
+    
+    </div>
+</div>
+
+</body>
+</html>
