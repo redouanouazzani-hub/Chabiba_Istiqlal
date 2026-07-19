@@ -339,6 +339,34 @@
   .lang-notice{ background:var(--pink-soft); border:1px solid #f5c6de; color:var(--pink-dark); font-size:11.5px; line-height:1.6; border-radius:8px; padding:10px 14px; margin-top:10px; }
   .demo-badge{ background:var(--amber-bg); border:1px solid #eed9ae; color:var(--amber); font-size:11.5px; font-weight:600; border-radius:8px; padding:9px 14px; margin-top:16px; }
 
+  /* ---- composants adhésion, espace membre et modules complétés ---- */
+  .steps4{ grid-template-columns:repeat(4,1fr); }
+  .upload-zone{ border:1.5px dashed var(--line); border-radius:9px; padding:18px 16px; font-size:12px; color:var(--muted-dark); line-height:1.6; background:#fff; }
+  .consent label{ display:flex; align-items:flex-start; gap:9px; font-size:12px; font-weight:400; color:var(--muted-dark); line-height:1.6; cursor:pointer; }
+  .consent input[type="checkbox"]{ width:18px; height:18px; min-height:18px; padding:0; margin:2px 0 0; flex-shrink:0; accent-color:var(--pink); cursor:pointer; }
+  .notice-major{ background:linear-gradient(120deg,#fff,var(--pink-soft)); border:1px solid #f5c6de; border-inline-start:3px solid var(--pink); border-radius:12px; padding:18px 20px; margin-bottom:20px; }
+  .notice-major .t{ font-size:14px; font-weight:800; color:var(--navy-dark); }
+  .notice-major .d{ font-size:12.5px; color:var(--muted-dark); line-height:1.65; margin-top:5px; max-width:640px; }
+  .badge-row{ display:flex; flex-wrap:wrap; gap:9px; margin-top:14px; }
+  .badge-chip{ background:var(--pink-soft); color:var(--pink-dark); border:1px solid #f5c6de; border-radius:14px; padding:6px 14px; font-size:11.5px; font-weight:700; }
+  .badge-chip.off{ background:var(--bg); color:var(--muted-dark); border-color:var(--line); }
+  .event-act{ margin-inline-start:auto; text-align:end; flex-shrink:0; }
+  .quota{ display:block; font-size:10.5px; color:var(--green); font-weight:700; margin-bottom:6px; }
+  .quota.full{ color:var(--amber); }
+  .btn-sm{ padding:7px 14px; font-size:11.5px; }
+  .map-placeholder{ background:linear-gradient(135deg,var(--bg),#e8edf3); border:1px solid var(--line); border-radius:12px; height:210px; display:flex; align-items:center; justify-content:center; text-align:center; padding:20px; font-size:12.5px; color:var(--muted-dark); }
+  .idea-row{ display:flex; gap:14px; background:#fff; border:1px solid var(--line); border-radius:10px; padding:14px 16px; margin-bottom:10px; align-items:center; }
+  .idea-vote{ text-align:center; flex-shrink:0; }
+  .vote-btn{ background:var(--pink-soft); border:1px solid #f5c6de; color:var(--pink-dark); border-radius:7px; width:38px; height:32px; font-size:13px; cursor:pointer; }
+  .vote-btn:hover{ background:var(--pink); color:#fff; border-color:var(--pink); }
+  .vote-n{ display:block; font-size:12px; font-weight:800; color:var(--navy-dark); margin-top:3px; }
+  .idea-body .t{ font-size:13px; font-weight:700; color:var(--navy-dark); line-height:1.4; }
+  .idea-body .d{ font-size:11.5px; color:var(--muted-dark); margin-top:3px; }
+  .social-feed{ background:#fff; border:1px solid var(--line); border-radius:12px; padding:16px; box-shadow:var(--shadow); }
+  .sf-head{ display:flex; align-items:center; gap:9px; font-size:12.5px; font-weight:800; color:var(--navy-dark); margin-bottom:8px; }
+  .sf-icon{ width:26px; height:26px; border-radius:50%; background:var(--navy-dark); color:#fff; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; }
+  .sf-body{ font-size:12px; color:var(--muted-dark); line-height:1.6; }
+
   footer{ background:var(--navy-dark); color:#c9d4e0; margin-top:60px; padding:34px 24px; }
   .foot-inner{ max-width:1200px; margin:0 auto; display:flex; justify-content:space-between; flex-wrap:wrap; gap:20px; font-size:12px; }
   .foot-inner .fbrand{ display:flex; align-items:center; gap:10px; }
@@ -466,8 +494,8 @@
 
     <div class="head-actions">
       <button class="icon-btn" id="searchBtn" aria-label="Rechercher">🔍</button>
-      <button class="btn-member" id="btnMember" data-goto="ecrire">Espace membre</button>
-      <button class="cta-header" id="btnJoin" data-goto="ecrire">Adhérer</button>
+      <button class="btn-member" id="btnMember" data-goto="membre-tableau">Espace membre</button>
+      <button class="cta-header" id="btnJoin" data-goto="adherer">Adhérer</button>
       <button class="burger" id="burger" aria-label="Menu" aria-haspopup="true">☰</button>
     </div>
   </div>
@@ -494,7 +522,7 @@
 </main>
 
 <div class="sticky-cta">
-  <button id="btnJoinSticky" data-goto="ecrire">Adhérer</button>
+  <button id="btnJoinSticky" data-goto="adherer">Adhérer</button>
 </div>
 
 <footer>
@@ -543,6 +571,17 @@ const MENU = [
     { key:"mediatheque", fr:"Médiathèque",  ar:"الوسائط المتعددة", zgh:"ⵜⴰⵎⴷⵢⴰⵜⵉⴽⵜ" },
     { key:"presse",      fr:"Revue de presse", ar:"المراجعة الصحفية", zgh:"ⵜⴰⵖⵓⵔⵉ ⵏ ⵓⵖⵎⵉⵙ" },
   ]},
+  { id:"adhesion", fr:"Adhésion", ar:"الانخراط", zgh:"ⴰⵎⵎⴰⴽⵏ", children:[
+    { key:"adherer",      fr:"Demande d'adhésion",       ar:"طلب الانخراط", zgh:"ⴰⵙⵓⵜⵔ ⵏ ⵓⵎⵎⴰⴽⵏ" },
+    { key:"renouveler",   fr:"Renouveler mon adhésion",  ar:"تجديد الانخراط", zgh:"ⴰⵙⵎⴰⵢⵏⵓ ⵏ ⵓⵎⵎⴰⴽⵏ" },
+    { key:"suivi",        fr:"Suivre ma demande",        ar:"تتبع الطلب", zgh:"ⴰⴹⴼⵓⵕ ⵏ ⵓⵙⵓⵜⵔ" },
+  ]},
+  { id:"membre", fr:"Espace membre", ar:"فضاء العضو", zgh:"ⴰⵎⵏⴰⴹ ⵏ ⵓⵎⵙⵎⵓⵏ", children:[
+    { key:"membre-tableau",  fr:"Mon tableau de bord",  ar:"لوحة القيادة", zgh:"ⵜⴰⴼⵍⵡⵉⵜ ⵉⵏⵓ" },
+    { key:"membre-carte",    fr:"Ma carte de membre",   ar:"بطاقة العضوية", zgh:"ⵜⴰⴽⴰⵕⴹⴰ ⵉⵏⵓ" },
+    { key:"membre-cotisation", fr:"Mes cotisations",    ar:"واجبات الانخراط", zgh:"ⵉⵙⵓⵔⴰⴼ ⵉⵏⵓ" },
+    { key:"membre-profil",   fr:"Mon profil",           ar:"ملفي الشخصي", zgh:"ⴰⴼⴰⵢⵍⵓ ⵉⵏⵓ" },
+  ]},
   { id:"contact", fr:"Contact", ar:"التواصل", zgh:"ⴰⵎⵢⴰⵡⴰⴹ", children:[
     { key:"ecrire",   fr:"Écrire",                   ar:"مراسلتنا", zgh:"ⴰⵔⴰ ⴰⵖ" },
     { key:"annuaire", fr:"Annuaire des responsables", ar:"دليل المسؤولين", zgh:"ⴰⵎⵏⴰⴷ ⵏ ⵉⵎⴰⵙⴰⵢⵏ" },
@@ -567,6 +606,9 @@ const UI = {
     demo:"Maquette de démonstration — les contenus, chiffres et documents sont fournis à titre d'illustration et ne constituent pas une publication officielle.",
     required:"Champ obligatoire.", emailBad:"Adresse email invalide, exemple : nom@exemple.ma",
     sending:"Envoi en cours…", sent:"Message envoyé. Le Bureau national vous répond sous 48 heures.",
+    sentJoin:"Demande enregistrée. Vous recevrez votre numéro de dossier par email ; le responsable de votre section l'examinera sous 7 jours.",
+    sentRenew:"Dossier retrouvé. Un code de confirmation vient d'être envoyé au numéro enregistré.",
+    sentTrack:"Dossier introuvable. Vérifiez le numéro figurant dans l'email de confirmation.",
     orgHint:"Cliquez sur un niveau pour découvrir son rôle et son mode de désignation.",
   },
   ar:{
@@ -584,10 +626,13 @@ const UI = {
     demo:"نموذج تجريبي — المحتويات والأرقام والوثائق معروضة للتوضيح فقط ولا تشكل نشراً رسمياً.",
     required:"حقل إلزامي.", emailBad:"عنوان بريد إلكتروني غير صالح، مثال: nom@exemple.ma",
     sending:"جارٍ الإرسال…", sent:"تم إرسال الرسالة. سيجيبكم المكتب الوطني خلال 48 ساعة.",
+    sentJoin:"تم تسجيل الطلب. ستتوصل برقم ملفك عبر البريد الإلكتروني؛ وسيدرسه مسؤول فرعك خلال 7 أيام.",
+    sentRenew:"تم العثور على الملف. أُرسل رمز التأكيد إلى الرقم المسجل.",
+    sentTrack:"لم يتم العثور على الملف. تحقق من الرقم الوارد في بريد التأكيد.",
     orgHint:"انقر على أي مستوى لاكتشاف دوره وطريقة تعيينه.",
   },
   /* ---- Amazigh (tifinagh) ----
-     Libellés d'interface uniquement. Les contenus longs et les 35 missions
+     Libellés d'interface uniquement. Les contenus longs et les 32 missions
      officielles restent en arabe : ils doivent être traduits par un
      traducteur amazighophone (IRCAM) avant toute publication officielle. */
   zgh:{
@@ -606,12 +651,15 @@ const UI = {
     demo:"ⴰⵎⴷⵢⴰ ⵏ ⵓⵙⴽⴰⵏ — ⵉⵏⵖⵎⵉⵙⵏ ⴷ ⵉⵎⴹⴰⵏⵏ ⴳⴰⵏ ⵖⴰⵙ ⵉ ⵓⵙⴽⴰⵏ.",
     required:"ⴰⴷⵖⴰⵔ ⴰⴷ ⵉⵅⵚⵚⴰ.", emailBad:"ⵜⴰⵏⵙⴰ ⵜⴰⵍⵉⴽⵜⵕⵓⵏⵉⵜ ⵓⵔ ⵜⵖⵓⴷⵉ.",
     sending:"ⴰⵙⵉⴼⴹ…", sent:"ⵜⴰⴼⵔⴰ ⵜⵜⵡⴰⵙⵉⴼⴹ.",
+    sentJoin:"ⵜⵜⵡⴰⴽⵍⵙ ⵓⵙⵓⵜⵔ. ⴰⴷ ⵜⴰⵎⵥⵜ ⵓⵟⵟⵓⵏ ⵏ ⵓⴼⴰⵢⵍⵓ ⵙ ⵢⵉⵎⴰⵢⵍ.",
+    sentRenew:"ⵢⵜⵜⵡⴰⴼ ⵓⴼⴰⵢⵍⵓ. ⵢⵜⵜⵡⴰⵙⵉⴼⴹ ⵓⵣⵡⵍ ⵏ ⵓⵙⵏⵜⵎ.",
+    sentTrack:"ⵓⵔ ⵢⵜⵜⵡⴰⴼ ⵓⴼⴰⵢⵍⵓ. ⵙⵙⴽⵏ ⵓⵟⵟⵓⵏ.",
     orgHint:"ⵙⵙⴽⵛⵎ ⵅⴼ ⵢⴰⵏ ⵓⵙⵡⵉⵔ ⴰⴼⴰⴷ ⴰⴷ ⵜⵙⵙⵏⵜ ⵜⴰⵡⵓⵔⵉ ⵏⵏⵙ.",
   }
 };
 
 /* ---- Niveaux de l'organigramme ----
-   Effectifs : 1 SG et 35 membres du Bureau exécutif sont attestés par les
+   Effectifs : 1 SG et 31 membres élus du Bureau exécutif sont attestés par les
    documents fournis. Les autres effectifs ne sont pas connus → "—". */
 const ORG_LEVELS = [
   { id:"sg", cls:"org-1", count:"1",
@@ -619,7 +667,7 @@ const ORG_LEVELS = [
     dFr:"Représentation légale et politique de l'organisation. Met en œuvre la stratégie nationale adoptée par le Congrès et assure la liaison avec la direction du Parti de l'Istiqlal.",
     dAr:"التمثيل القانوني والسياسي للمنظمة، وتنفيذ الاستراتيجية الوطنية المصادق عليها في المؤتمر، والتنسيق مع القيادة التنفيذية لحزب الاستقلال.",
     mFr:"Élu par le Congrès national", mAr:"يُنتخب من طرف المؤتمر الوطني" },
-  { id:"be", cls:"org-2", count:"35",
+  { id:"be", cls:"org-2", count:"31",
     fr:"Bureau Exécutif", ar:"المكتب التنفيذي",
     dFr:"Organe exécutif permanent. Ses membres portent chacun un domaine de responsabilité et pilotent l'action quotidienne de l'organisation entre deux congrès.",
     dAr:"الجهاز التنفيذي الدائم. يتحمل كل عضو من أعضائه مسؤولية مجال محدد، ويشرفون على العمل اليومي للمنظمة بين مؤتمرين.",
@@ -649,9 +697,9 @@ const ORG_LEVELS = [
 
 /* ---- Pôles thématiques ----
    Déduits du texte des missions officielles pour rendre la liste lisible :
-   les 34 membres portent tous l'intitulé unique « عضو المكتب التنفيذي ».
+   les 31 membres élus portent tous l'intitulé unique « عضو المكتب التنفيذي ».
    Le Bureau exécutif peut corriger librement ces regroupements ci-dessous.
-   Direction (1) · Organisation & finances (4) · Territoires & sections (4) · Formation & jeunesse (6) · Communication & numérique (4) · Économie & développement (4) · Social & solidarité (5) · Doctrine & analyse politique (3) · Institutions & plaidoyer (2) · International & MRE (2)
+   Direction (1) · Organisation & finances (4) · Territoires & sections (4) · Formation & jeunesse (4) · Communication & numérique (4) · Économie & développement (4) · Social & solidarité (5) · Doctrine & analyse politique (2) · Institutions & plaidoyer (2) · International & MRE (2)
 */
 const POLES = {
  "direction": [
@@ -696,7 +744,7 @@ const POLES = {
  ]
 };
 
-/* ---- Bureau exécutif : 1 Secrétaire Général + 34 membres ----
+/* ---- Bureau exécutif : 1 Secrétaire Général + 31 membres élus ----
    Noms et missions repris à l'identique du fichier organigramme source.
    Le champ « mission » ne doit pas être reformulé : c'est le texte officiel.
    Le champ « kw » ne s'affiche jamais : ce sont des mots-clés français qui
@@ -717,7 +765,7 @@ const MEMBERS = [
  },
  {
   "id": "m1",
-  "fr": "Lalla Hind Ould Rachid",
+  "fr": "Lalla Hind Ould Errachid",
   "ar": "لالة هند ولد الرشيد",
   "roleFr": "Membre du Bureau exécutif",
   "roleAr": "عضو المكتب التنفيذي",
@@ -727,7 +775,7 @@ const MEMBERS = [
  },
  {
   "id": "m2",
-  "fr": "Marwa Ansari",
+  "fr": "Marwa El Ansari",
   "ar": "مروى الأنصاري",
   "roleFr": "Membre du Bureau exécutif",
   "roleAr": "عضو المكتب التنفيذي",
@@ -747,7 +795,7 @@ const MEMBERS = [
  },
  {
   "id": "m4",
-  "fr": "Bouchra Biad",
+  "fr": "Bouchra Bayad",
   "ar": "بشرى بياض",
   "roleFr": "Membre du Bureau exécutif",
   "roleAr": "عضو المكتب التنفيذي",
@@ -757,7 +805,7 @@ const MEMBERS = [
  },
  {
   "id": "m5",
-  "fr": "Oumaima Khassal",
+  "fr": "Oumaima Khissal",
   "ar": "أميمة خصال",
   "roleFr": "Membre du Bureau exécutif",
   "roleAr": "عضو المكتب التنفيذي",
@@ -777,16 +825,6 @@ const MEMBERS = [
  },
  {
   "id": "m7",
-  "fr": "Sofia Saoudi",
-  "ar": "صوفيا سعودي",
-  "roleFr": "Membre du Bureau exécutif",
-  "roleAr": "عضو المكتب التنفيذي",
-  "pole": "formation",
-  "mission": "عضو لجنة إدارة 'أكاديمية الاستقلال للشباب'، وتطوير مناهج التكوين الرقمي والتعليم التفاعلي عن بعد.",
-  "kw": "académie formation numérique enseignement à distance pédagogie"
- },
- {
-  "id": "m8",
   "fr": "Zahra Andour",
   "ar": "زهراء أندور",
   "roleFr": "Membre du Bureau exécutif",
@@ -796,7 +834,7 @@ const MEMBERS = [
   "kw": "parité femmes égalité représentation élues collectivités"
  },
  {
-  "id": "m9",
+  "id": "m8",
   "fr": "Fatima Zahra Daoudi",
   "ar": "فاطمة الزهراء الداودي",
   "roleFr": "Membre du Bureau exécutif",
@@ -806,7 +844,7 @@ const MEMBERS = [
   "kw": "socio-éducatif solidarité proximité rural périurbain régional"
  },
  {
-  "id": "m10",
+  "id": "m9",
   "fr": "Hamza Kaouachi",
   "ar": "حمزة كواشي",
   "roleFr": "Membre du Bureau exécutif",
@@ -816,8 +854,8 @@ const MEMBERS = [
   "kw": "logistique organisation événements universités d'été congrès régionaux"
  },
  {
-  "id": "m11",
-  "fr": "Abed Bouguern Maa El Ainine",
+  "id": "m10",
+  "fr": "Abid Boukarn Maalainine",
   "ar": "عبيد بوكارن ماء العينين",
   "roleFr": "Membre du Bureau exécutif",
   "roleAr": "عضو المكتب التنفيذي",
@@ -826,8 +864,8 @@ const MEMBERS = [
   "kw": "sections provinciales extension renouvellement bureaux locaux territoire"
  },
  {
-  "id": "m12",
-  "fr": "El Bachir Aba",
+  "id": "m11",
+  "fr": "El Bachir Abba",
   "ar": "البشير عبا",
   "roleFr": "Membre du Bureau exécutif",
   "roleAr": "عضو المكتب التنفيذي",
@@ -836,7 +874,7 @@ const MEMBERS = [
   "kw": "analyse politique communiqués idéologie doctrine bureau exécutif"
  },
  {
-  "id": "m13",
+  "id": "m12",
   "fr": "Mohamed Laghdaf Cherif",
   "ar": "محمد لغضف شريف",
   "roleFr": "Membre du Bureau exécutif",
@@ -846,7 +884,7 @@ const MEMBERS = [
   "kw": "élus jeunes conseils communaux régionaux politiques locales"
  },
  {
-  "id": "m14",
+  "id": "m13",
   "fr": "Wassim Karimi",
   "ar": "وسيم كريمي",
   "roleFr": "Membre du Bureau exécutif",
@@ -856,7 +894,7 @@ const MEMBERS = [
   "kw": "sport enfance associations société civile citoyenneté"
  },
  {
-  "id": "m15",
+  "id": "m14",
   "fr": "Younes Amimi",
   "ar": "يونس عميمي",
   "roleFr": "Membre du Bureau exécutif",
@@ -866,18 +904,8 @@ const MEMBERS = [
   "kw": "administration archives procès-verbaux réunions gestion centrale"
  },
  {
-  "id": "m16",
-  "fr": "Badr Lakhlili",
-  "ar": "بدر لكشيلي",
-  "roleFr": "Membre du Bureau exécutif",
-  "roleAr": "عضو المكتب التنفيذي",
-  "pole": "doctrine",
-  "mission": "عضو الإدارة الثلاثية لـ 'أكاديمية الاستقلال للشباب'، ومكلف بتصميم المناهج الفكرية والتأطير العقائدي للمنظمة.",
-  "kw": "académie doctrine idéologie encadrement programmes intellectuels"
- },
- {
-  "id": "m17",
-  "fr": "Mohamed Mamoun Zeidouh",
+  "id": "m15",
+  "fr": "Mohamed Mamoun Zidouh",
   "ar": "محمد مأمون زيدوح",
   "roleFr": "Membre du Bureau exécutif",
   "roleAr": "عضو المكتب التنفيذي",
@@ -886,8 +914,8 @@ const MEMBERS = [
   "kw": "syndicat travailleurs jeunesse ouvrière UGTM social"
  },
  {
-  "id": "m18",
-  "fr": "Ouhssine Abdessadek",
+  "id": "m16",
+  "fr": "Ouhssain Abdessadek",
   "ar": "أوحسين عبد الصادق",
   "roleFr": "Membre du Bureau exécutif",
   "roleAr": "عضو المكتب التنفيذي",
@@ -896,8 +924,8 @@ const MEMBERS = [
   "kw": "politiques publiques évaluation plaidoyer ministères institutions mémorandums"
  },
  {
-  "id": "m19",
-  "fr": "El Yazid Qayouh",
+  "id": "m17",
+  "fr": "Elyazid Qayouh",
   "ar": "اليزيد قيوح",
   "roleFr": "Membre du Bureau exécutif",
   "roleAr": "عضو المكتب التنفيذي",
@@ -906,7 +934,7 @@ const MEMBERS = [
   "kw": "monde rural agriculture développement rural structures locales projets"
  },
  {
-  "id": "m20",
+  "id": "m18",
   "fr": "Mohamed Amine Abkari",
   "ar": "محمد أمين عبكاري",
   "roleFr": "Membre du Bureau exécutif",
@@ -916,8 +944,8 @@ const MEMBERS = [
   "kw": "juridique statuts conformité recours contentieux interne"
  },
  {
-  "id": "m21",
-  "fr": "Abderrazak Sedari",
+  "id": "m19",
+  "fr": "Abderrazzak Sadari",
   "ar": "عبد الرزاق صدري",
   "roleFr": "Membre du Bureau exécutif",
   "roleAr": "عضو المكتب التنفيذي",
@@ -926,8 +954,8 @@ const MEMBERS = [
   "kw": "développement durable environnement climat économie verte"
  },
  {
-  "id": "m22",
-  "fr": "Mohamed Ibn Ishaq",
+  "id": "m20",
+  "fr": "Mohamed Ibn Ishak",
   "ar": "محمد ابن إسحاق",
   "roleFr": "Membre du Bureau exécutif",
   "roleAr": "عضو المكتب التنفيذي",
@@ -936,8 +964,8 @@ const MEMBERS = [
   "kw": "ingénieurs experts cadres réseaux solutions techniques développement"
  },
  {
-  "id": "m23",
-  "fr": "Mohamed Lakhrif",
+  "id": "m21",
+  "fr": "Mohamed Lakhrib",
   "ar": "محمد لريب",
   "roleFr": "Membre du Bureau exécutif",
   "roleAr": "عضو المكتب التنفيذي",
@@ -946,7 +974,7 @@ const MEMBERS = [
   "kw": "caravanes médicales santé humanitaire bénévoles urgence solidarité"
  },
  {
-  "id": "m24",
+  "id": "m22",
   "fr": "Yassine Akhdim",
   "ar": "ياسين أخديم",
   "roleFr": "Membre du Bureau exécutif",
@@ -956,18 +984,8 @@ const MEMBERS = [
   "kw": "presse relations médias nationale internationale interviews communication"
  },
  {
-  "id": "m25",
-  "fr": "Youssef Oukhlou",
-  "ar": "يوسف أوخلو",
-  "roleFr": "Membre du Bureau exécutif",
-  "roleAr": "عضو المكتب التنفيذي",
-  "pole": "formation",
-  "mission": "عضو رئيسي في إدارة 'أكاديمية الاستقلال للشباب'، ومكلف ببرمجة الندوات الفكرية، والمحاضرات الوطنية، واللقاءات الثقافية.",
-  "kw": "académie conférences colloques rencontres culturelles programmation"
- },
- {
-  "id": "m26",
-  "fr": "Mohcine Bouzidi Idrissi",
+  "id": "m23",
+  "fr": "Mouhcine Bouzidi Idrissi",
   "ar": "محسن البوزيدي الإدريسي",
   "roleFr": "Membre du Bureau exécutif",
   "roleAr": "عضو المكتب التنفيذي",
@@ -976,8 +994,8 @@ const MEMBERS = [
   "kw": "adhésions plateforme numérique cartes de membre technologie"
  },
  {
-  "id": "m27",
-  "fr": "Zakaria Madyan",
+  "id": "m24",
+  "fr": "Zakaria Madian",
   "ar": "زكرياء مضيان",
   "roleFr": "Membre du Bureau exécutif",
   "roleAr": "عضو المكتب التنفيذي",
@@ -986,8 +1004,8 @@ const MEMBERS = [
   "kw": "jeunesse scolaire lycéens éducation citoyenneté secondaire"
  },
  {
-  "id": "m28",
-  "fr": "Hamza Mousaoui",
+  "id": "m25",
+  "fr": "Hamza Moussaoui",
   "ar": "حمزة الموساوي",
   "roleFr": "Membre du Bureau exécutif",
   "roleAr": "عضو المكتب التنفيذي",
@@ -996,7 +1014,7 @@ const MEMBERS = [
   "kw": "finances gestion financière audit dépenses trésorier comptabilité"
  },
  {
-  "id": "m29",
+  "id": "m26",
   "fr": "Yassine Bensalah",
   "ar": "ياسين بنصالح",
   "roleFr": "Membre du Bureau exécutif",
@@ -1006,7 +1024,7 @@ const MEMBERS = [
   "kw": "art oratoire débat plaidoirie leadership formation futurs cadres"
  },
  {
-  "id": "m30",
+  "id": "m27",
   "fr": "Mohamed Bouchaar",
   "ar": "محمد بوشعار",
   "roleFr": "Membre du Bureau exécutif",
@@ -1016,8 +1034,8 @@ const MEMBERS = [
   "kw": "transformation numérique modernisation applications digitalisation"
  },
  {
-  "id": "m31",
-  "fr": "Brahim Berdiji",
+  "id": "m28",
+  "fr": "Ibrahim Bardiji",
   "ar": "إبراهيم برديجي",
   "roleFr": "Membre du Bureau exécutif",
   "roleAr": "عضو المكتب التنفيذي",
@@ -1026,7 +1044,7 @@ const MEMBERS = [
   "kw": "terrain sections locales montagne zones enclavées justice territoriale"
  },
  {
-  "id": "m32",
+  "id": "m29",
   "fr": "Marouane Salhi",
   "ar": "مروان الصالحي",
   "roleFr": "Membre du Bureau exécutif",
@@ -1036,7 +1054,7 @@ const MEMBERS = [
   "kw": "universités de printemps rapports doctrinaux planification scientifique"
  },
  {
-  "id": "m33",
+  "id": "m30",
   "fr": "Fahd Berkani",
   "ar": "فهد البركاني",
   "roleFr": "Membre du Bureau exécutif",
@@ -1046,7 +1064,7 @@ const MEMBERS = [
   "kw": "entrepreneuriat innovation sociale startups incubateurs projets jeunes"
  },
  {
-  "id": "m34",
+  "id": "m31",
   "fr": "Hassan Hamdoun",
   "ar": "حسن حمدون",
   "roleFr": "Membre du Bureau exécutif",
@@ -1089,7 +1107,7 @@ function buildPanels(){
       ${LANG==="ar" ? '<div class="ar">نحو تعاقد مجتمعي جديد</div>' : ''}
       <p>${A("Portail officiel de la Jeunesse Istiqlalienne, organe de jeunesse du Parti de l'Istiqlal. Rejoignez une nouvelle génération de militants engagés pour le Maroc de demain.","البوابة الرسمية للشبيبة الاستقلالية، المنظمة الشبابية لحزب الاستقلال. انضم إلى جيل جديد من المناضلين الملتزمين بمغرب الغد.")}</p>
       <div class="btns">
-        <button class="btn btn-primary" data-goto="ecrire">${A("Rejoindre l'organisation","انضم إلى المنظمة")}</button>
+        <button class="btn btn-primary" data-goto="adherer">${A("Rejoindre l'organisation","انضم إلى المنظمة")}</button>
         <button class="btn btn-ghost" data-goto="gouvernance">${A("Découvrir la gouvernance","اكتشف الحكامة")}</button>
       </div>
     </div>
@@ -1107,11 +1125,18 @@ function buildPanels(){
       <div class="news-card"><div class="news-thumb g2"></div><div class="news-body"><div class="news-cat">${A("Gouvernance","الحكامة")}</div><div class="news-title">${A("Mansour Lambarki élu Secrétaire Général à l'unanimité","انتخاب منصور لمباركي كاتباً عاماً بالإجماع")}</div><div class="news-date">${A("11 juillet 2026","11 يوليوز 2026")}</div></div></div>
       <div class="news-card"><div class="news-thumb g3"></div><div class="news-body"><div class="news-cat">${A("Mobilisation","التعبئة")}</div><div class="news-title">${A("Vers les législatives du 23 septembre : la jeunesse en ordre de marche","نحو تشريعيات 23 شتنبر: الشبيبة في حالة استنفار")}</div><div class="news-date">${A("12 juillet 2026","12 يوليوز 2026")}</div></div></div>
     </div>
+
+    ` + head("Sur les réseaux sociaux","على الشبكات الاجتماعية","ⵅⴼ ⵉⵣⴹⴰⵢⵏ ⵉⵏⴰⵎⵓⵏⵏ") + `
+    <div class="grid3">
+      <div class="social-feed"><div class="sf-head"><span class="sf-icon">f</span>Facebook</div><div class="sf-body">${A("Dernières publications de la page officielle de l'organisation.","آخر منشورات الصفحة الرسمية للمنظمة.")}</div></div>
+      <div class="social-feed"><div class="sf-head"><span class="sf-icon">in</span>Instagram</div><div class="sf-body">${A("Photos et reportages des activités nationales et régionales.","صور وتقارير الأنشطة الوطنية والجهوية.")}</div></div>
+      <div class="social-feed"><div class="sf-head"><span class="sf-icon">X</span>X</div><div class="sf-body">${A("Communiqués et prises de position en temps réel.","البلاغات والمواقف آنياً.")}</div></div>
+    </div>
   `);
 
   /* ---- GOUVERNANCE (organigramme intégré) ---- */
   o += panel("gouvernance", head("Gouvernance & organigramme","الحكامة والهيكل التنظيمي") + `
-    <p class="lead">${A("Direction élue lors du 14ᵉ Congrès national tenu à Salé les 10 et 11 juillet 2026 : le Secrétaire Général et les 35 membres du Bureau exécutif, chacun porteur d'un domaine de responsabilité.","القيادة المنتخبة خلال المؤتمر الوطني الرابع عشر المنعقد بسلا يومي 10 و11 يوليوز 2026: الكاتب العام و35 عضواً بالمكتب التنفيذي، يتحمل كل واحد منهم مسؤولية مجال محدد.")}</p>
+    <p class="lead">${A("Direction élue lors du 14ᵉ Congrès national tenu à Salé les 10 et 11 juillet 2026 : le Secrétaire Général et les 31 membres élus du Bureau exécutif, chacun porteur d'un domaine de responsabilité.","القيادة المنتخبة خلال المؤتمر الوطني الرابع عشر المنعقد بسلا يومي 10 و11 يوليوز 2026: الكاتب العام و31 عضواً منتخباً بالمكتب التنفيذي، يتحمل كل واحد منهم مسؤولية مجال محدد.")}</p>
 
     <div class="sg-card">
       <button class="sg-avatar" id="sgAvatar" aria-label="${A("Agrandir la photo du Secrétaire Général","تكبير صورة الكاتب العام")}"><img src="__SG__" alt="Mansour Lambarki" style="width:100%;height:100%;border-radius:50%;object-fit:cover;"></button>
@@ -1197,12 +1222,33 @@ function buildPanels(){
   o += panel("agenda", head("Activités & agenda","الأنشطة والأجندة") + `
     <div class="event-card"><div class="event-date">20<span>${A("JUIL","يوليوز")}</span></div><div class="event-info"><div class="t">${A("Réunion du Bureau exécutif","اجتماع المكتب التنفيذي")}</div><div class="l">${A("Siège national — Rabat","المقر الوطني — الرباط")}</div></div></div>
     <div class="event-card"><div class="event-date">27<span>${A("JUIL","يوليوز")}</span></div><div class="event-info"><div class="t">${A("Formation en leadership — Session régionale","تكوين في القيادة — دورة جهوية")}</div><div class="l">${A("Casablanca-Settat","الدار البيضاء-سطات")}</div></div></div>
-    <div class="event-card"><div class="event-date">03<span>${A("AOÛT","غشت")}</span></div><div class="event-info"><div class="t">${A("Rencontre des coordinations régionales","لقاء التنسيقيات الجهوية")}</div><div class="l">${A("Marrakech-Safi","مراكش-آسفي")}</div></div></div>
+    <div class="event-card"><div class="event-date">03<span>${A("AOÛT","غشت")}</span></div><div class="event-info"><div class="t">${A("Rencontre des coordinations régionales","لقاء التنسيقيات الجهوية")}</div><div class="l">${A("Marrakech-Safi","مراكش-آسفي")}</div></div><div class="event-act"><span class="quota">${A("12 places restantes","12 مقعداً متبقياً")}</span><button class="btn btn-primary btn-sm">${A("S'inscrire","التسجيل")}</button></div></div>
+    <div class="event-card"><div class="event-date">15<span>${A("AOÛT","غشت")}</span></div><div class="event-info"><div class="t">${A("Université d'été des jeunes cadres","الجامعة الصيفية للأطر الشابة")}</div><div class="l">${A("Souss-Massa","سوس-ماسة")}</div></div><div class="event-act"><span class="quota full">${A("Complet — liste d'attente","مكتمل — لائحة الانتظار")}</span><button class="btn btn-ghost btn-sm">${A("Me placer en attente","التسجيل في الانتظار")}</button></div></div>
+
+    ` + head("Carte des sections","خريطة الفروع","ⵜⴰⴽⴰⵕⴹⴰ ⵏ ⵉⴼⵔⵓⵄⵏ") + `
+    <p class="lead">${A("Localisation des coordinations régionales et de leurs sections locales, avec les coordonnées du responsable de chaque structure.","تحديد مواقع التنسيقيات الجهوية وفروعها المحلية، مع بيانات التواصل مع مسؤول كل هيكل.")}</p>
+    <div class="map-placeholder">${A("Carte interactive des 12 coordinations régionales et des sections locales","خريطة تفاعلية لـ12 تنسيقية جهوية وللفروع المحلية")}</div>
+
+    ` + head("Archives des congrès","أرشيف المؤتمرات","ⴰⵔⵛⵉⴼ ⵏ ⵉⴳⵔⴰⵡⵏ") + `
+    <div class="doc-row"><div class="doc-icon"></div><div><div class="t">${A("14ᵉ Congrès national — Salé","المؤتمر الوطني 14 — سلا")}</div><div class="d">${A("10-11 juillet 2026 · résolutions et communiqué final","10-11 يوليوز 2026 · القرارات والبلاغ الختامي")}</div></div></div>
+    <div class="doc-row"><div class="doc-icon"></div><div><div class="t">${A("Comptes-rendus des activités nationales","تقارير الأنشطة الوطنية")}</div><div class="d">${A("Rapports, photos et chiffres de participation","تقارير وصور وأرقام المشاركة")}</div></div></div>
   `);
 
   /* ---- PROPOSITIONS ---- */
   o += panel("propositions", head("Propositions et consultations","المقترحات والاستشارات") + `
     <p class="lead">${A("Espace d'expression des membres : proposez une idée, soutenez celles des autres et participez aux consultations ouvertes.","فضاء لتعبير الأعضاء: اقترح فكرة، وادعم مقترحات الآخرين، وشارك في الاستشارات المفتوحة.")}</p>
+    ` + head("Boîte à idées","صندوق المقترحات","ⵜⴰⵙⵉⵍⴰ ⵏ ⵜⵙⵓⵎⴰⵔ") + `
+    <div class="idea-row">
+      <div class="idea-vote"><button class="vote-btn">▲</button><span class="vote-n">142</span></div>
+      <div class="idea-body"><div class="t">${A("Créer un fonds d'amorçage pour les projets des jeunes ruraux","إحداث صندوق دعم لمشاريع شباب العالم القروي")}</div><div class="d">${A("Proposé par un membre de Drâa-Tafilalet · statut : à l'étude","اقترحه عضو من درعة-تافيلالت · الحالة: قيد الدراسة")}</div></div>
+    </div>
+    <div class="idea-row">
+      <div class="idea-vote"><button class="vote-btn">▲</button><span class="vote-n">98</span></div>
+      <div class="idea-body"><div class="t">${A("Ouvrir les formations en ligne aux lycéens de la Jeunesse scolaire","فتح التكوينات عن بعد أمام تلاميذ الشبيبة المدرسية")}</div><div class="d">${A("Proposé par un membre de Fès-Meknès · statut : adopté","اقترحه عضو من فاس-مكناس · الحالة: مُعتمد")}</div></div>
+    </div>
+    <div style="margin-top:14px;"><button class="btn btn-primary">${A("Proposer une idée","اقترح فكرة")}</button></div>
+
+    ` + head("Consultations","الاستشارات","ⵜⵉⵎⵛⴰⵡⴰⵕⵉⵏ") + `
     <div class="value-card" style="margin-bottom:16px;">
       <div class="t">${A("Consultation en cours : priorités de la mandature","استشارة جارية: أولويات الولاية")}</div>
       <div style="margin-top:12px;">
@@ -1237,7 +1283,21 @@ function buildPanels(){
 
   /* ---- MÉDIATHÈQUE ---- */
   o += panel("mediatheque", head("Médiathèque","الوسائط المتعددة") + `
-    <p class="lead">${A("Galerie photos et vidéothèque du 14ᵉ Congrès national.","معرض الصور ومكتبة الفيديو للمؤتمر الوطني الرابع عشر.")}</p>
+    <p class="lead">${A("Galerie photos, vidéothèque et bibliothèque documentaire de l'organisation.","معرض الصور ومكتبة الفيديو والمكتبة الوثائقية للمنظمة.")}</p>
+    <div class="bureau-toolbar">
+      <div class="toolbar-left">
+        <label class="sr-only" for="mediaSearch">${A("Rechercher un document","البحث عن وثيقة")}</label>
+        <input class="bureau-search" id="mediaSearch" type="search" placeholder="${A("Rechercher par mot-clé…","ابحث بالكلمة المفتاحية…")}">
+        <select class="pole-select">
+          <option>${A("Tous les types","جميع الأنواع")}</option>
+          <option>${A("Photos","الصور")}</option><option>${A("Vidéos","الفيديوهات")}</option><option>${A("Documents","الوثائق")}</option>
+        </select>
+        <select class="pole-select">
+          <option>${A("Accès public","ولوج عام")}</option>
+          <option>${A("Réservé aux membres","مخصص للأعضاء")}</option>
+        </select>
+      </div>
+    </div>
     <div class="gallery"><div class="g1"></div><div class="g2"></div><div class="g3"></div><div class="g4"></div><div class="g5"></div><div class="g6"></div><div class="g1"></div><div class="g2"></div></div>
     <div style="margin-top:20px;">
       <div class="doc-row"><div class="doc-icon" style="background:var(--navy-dark);"></div><div><div class="t">▶ ${A("Discours d'ouverture — Nizar Baraka","الخطاب الافتتاحي — نزار بركة")}</div><div class="d">${A("10 juillet 2026 · 12 min","10 يوليوز 2026 · 12 دقيقة")}</div></div></div>
@@ -1249,6 +1309,155 @@ function buildPanels(){
   o += panel("presse", head("Revue de presse","المراجعة الصحفية") + `
     <div class="doc-row"><div class="doc-icon"></div><div><div class="t">${A("Couverture du 14ᵉ Congrès national","تغطية المؤتمر الوطني الرابع عشر")}</div><div class="d">${A("Juillet 2026","يوليوز 2026")}</div></div></div>
     <div class="doc-row"><div class="doc-icon"></div><div><div class="t">${A("Entretien avec le Secrétaire Général","حوار مع الكاتب العام")}</div><div class="d">${A("Juillet 2026","يوليوز 2026")}</div></div></div>
+  `);
+
+  /* ---- ADHÉSION ---- */
+  o += panel("adherer", head("Demande d'adhésion","طلب الانخراط","ⴰⵙⵓⵜⵔ ⵏ ⵓⵎⵎⴰⴽⵏ") + `
+    <p class="lead">${A("Rejoignez la Jeunesse Istiqlalienne en quatre étapes. Votre demande est examinée par le responsable de votre section locale.","انضم إلى الشبيبة الاستقلالية في أربع مراحل. يدرس طلبك مسؤول فرعك المحلي.")}</p>
+    <div class="steps steps4">
+      <div class="step-card"><div class="step-num">1</div><h4>${A("Formulaire","الاستمارة")}</h4><p>${A("Données personnelles, choix de la section, pièce d'identité et photo.","المعطيات الشخصية، اختيار الفرع، بطاقة الهوية والصورة.")}</p></div>
+      <div class="step-card"><div class="step-num">2</div><h4>${A("Validation locale","المصادقة المحلية")}</h4><p>${A("Le responsable de votre section examine la demande.","يدرس مسؤول فرعك الطلب.")}</p></div>
+      <div class="step-card"><div class="step-num">3</div><h4>${A("Cotisation","واجب الانخراط")}</h4><p>${A("Réglée auprès de votre section, puis enregistrée par le responsable.","يُؤدى لدى فرعك، ثم يسجله المسؤول.")}</p></div>
+      <div class="step-card"><div class="step-num">4</div><h4>${A("Carte de membre","بطاقة العضوية")}</h4><p>${A("Carte numérique avec QR code vérifiable, disponible dans votre espace.","بطاقة رقمية برمز QR قابل للتحقق، متاحة في فضائك.")}</p></div>
+    </div>
+
+    ` + head("Formulaire d'adhésion","استمارة الانخراط","ⵜⴰⴼⵔⵉⵙⵜ ⵏ ⵓⵎⵎⴰⴽⵏ") + `
+    <form id="joinForm" novalidate>
+      <div class="row2">
+        <div class="field"><label for="jf-first">${A("Prénom","الاسم الشخصي")} <span class="req">*</span></label><input id="jf-first" type="text" required><div class="err"></div></div>
+        <div class="field"><label for="jf-last">${A("Nom","الاسم العائلي")} <span class="req">*</span></label><input id="jf-last" type="text" required><div class="err"></div></div>
+      </div>
+      <div class="row2">
+        <div class="field"><label for="jf-cin">${A("Numéro de CIN","رقم البطاقة الوطنية")} <span class="req">*</span></label><input id="jf-cin" type="text" required><div class="err"></div></div>
+        <div class="field"><label for="jf-birth">${A("Date de naissance","تاريخ الازدياد")} <span class="req">*</span></label><input id="jf-birth" type="date" required><div class="err"></div></div>
+      </div>
+      <div class="row2">
+        <div class="field"><label for="jf-mail">${A("Adresse email","البريد الإلكتروني")} <span class="req">*</span></label><input id="jf-mail" type="email" required><div class="err"></div></div>
+        <div class="field"><label for="jf-tel">${A("Téléphone","الهاتف")} <span class="req">*</span></label><input id="jf-tel" type="tel" required><div class="err"></div></div>
+      </div>
+      <div class="field"><label for="jf-region">${A("Section régionale","الفرع الجهوي")} <span class="req">*</span></label>
+        <select id="jf-region" required>
+          <option value="">${A("Choisissez votre région","اختر جهتك")}</option>
+          ${["Rabat-Salé-Kénitra","Casablanca-Settat","Marrakech-Safi","Fès-Meknès","Tanger-Tétouan-Al Hoceïma","Oriental","Souss-Massa","Béni Mellal-Khénifra","Drâa-Tafilalet","Guelmim-Oued Noun","Laâyoune-Sakia El Hamra","Dakhla-Oued Ed-Dahab"].map(r=>'<option>'+r+'</option>').join("")}
+        </select><div class="err"></div></div>
+      <div class="field"><label>${A("Pièces à joindre","الوثائق المطلوبة")} <span class="req">*</span></label>
+        <div class="upload-zone">${A("Carte d'identité nationale (recto-verso) et photo d'identité — formats acceptés : JPG, PNG, PDF.","البطاقة الوطنية (الوجهان) وصورة شخصية — الصيغ المقبولة: JPG، PNG، PDF.")}</div></div>
+      <div class="field consent"><label><input type="checkbox" id="jf-consent" required> ${A("J'accepte que mes données soient traitées pour la gestion de mon adhésion, conformément à la loi 09-08 sur la protection des données personnelles.","أوافق على معالجة معطياتي لأغراض تدبير انخراطي، طبقاً للقانون 09-08 المتعلق بحماية المعطيات الشخصية.")}</label><div class="err"></div></div>
+      <button type="submit" class="btn btn-primary">${A("Envoyer ma demande","إرسال طلبي")}</button>
+      <div class="form-status" id="joinStatus" role="status"></div>
+    </form>
+  `);
+
+  /* ---- RENOUVELLEMENT DE MANDATURE ---- */
+  o += panel("renouveler", head("Renouveler mon adhésion","تجديد الانخراط","ⴰⵙⵎⴰⵢⵏⵓ ⵏ ⵓⵎⵎⴰⴽⵏ") + `
+    <div class="notice-major">
+      <div class="t">${A("Renouvellement de la 14ᵉ mandature","تجديد الولاية الرابعة عشرة")}</div>
+      <div class="d">${A("À la suite du 14ᵉ Congrès national, chaque membre déjà adhérent confirme son engagement pour la nouvelle mandature. Vos données sont déjà connues : le parcours est plus court qu'une première adhésion.","في أعقاب المؤتمر الوطني الرابع عشر، يؤكد كل منخرط سابق التزامه للولاية الجديدة. معطياتكم معروفة مسبقاً: المسار أقصر من الانخراط الأول.")}</div>
+    </div>
+
+    <p class="lead">${A("Ce parcours est réservé aux membres déjà inscrits. Si vous n'avez jamais adhéré, utilisez plutôt la demande d'adhésion.","هذا المسار مخصص للأعضاء المسجلين سابقاً. إذا لم تنخرط من قبل، استعمل طلب الانخراط.")}</p>
+
+    <div class="steps">
+      <div class="step-card"><div class="step-num">1</div><h4>${A("Identification","التعرف")}</h4><p>${A("Numéro d'adhérent ou CIN, puis code reçu par SMS.","رقم العضوية أو البطاقة الوطنية، ثم رمز يصلك برسالة نصية.")}</p></div>
+      <div class="step-card"><div class="step-num">2</div><h4>${A("Vérification","التحقق")}</h4><p>${A("Confirmez ou corrigez vos coordonnées et votre section.","أكد أو صحح بياناتك وفرعك.")}</p></div>
+      <div class="step-card"><div class="step-num">3</div><h4>${A("Confirmation","التأكيد")}</h4><p>${A("Votre carte est mise à jour pour la nouvelle mandature.","تُحدَّث بطاقتك للولاية الجديدة.")}</p></div>
+    </div>
+
+    ` + head("Retrouver mon dossier","استرجاع ملفي","ⴰⴼ ⴰⴼⴰⵢⵍⵓ ⵉⵏⵓ") + `
+    <form id="renewForm" novalidate>
+      <div class="row2">
+        <div class="field"><label for="rf-id">${A("Numéro d'adhérent ou CIN","رقم العضوية أو البطاقة الوطنية")} <span class="req">*</span></label><input id="rf-id" type="text" placeholder="JI-2019-004512" required><div class="err"></div></div>
+        <div class="field"><label for="rf-tel">${A("Téléphone enregistré","الهاتف المسجل")} <span class="req">*</span></label><input id="rf-tel" type="tel" required><div class="err"></div></div>
+      </div>
+      <button type="submit" class="btn btn-primary">${A("Retrouver mon dossier","استرجاع ملفي")}</button>
+      <div class="form-status" id="renewStatus" role="status"></div>
+    </form>
+
+    <p class="source-note">${A("L'ancienneté, les badges de participation et l'historique des cotisations sont conservés. Un membre qui ne renouvelle pas dans les délais fixés par le Bureau national passe au statut inactif : il conserve son dossier et peut le réactiver à tout moment.","تُحفظ الأقدمية وشارات المشاركة وتاريخ الأداءات. العضو الذي لا يجدد داخل الآجال التي يحددها المكتب الوطني ينتقل إلى وضعية غير نشط: يحتفظ بملفه ويمكنه تفعيله في أي وقت.")}</p>
+  `);
+
+  /* ---- SUIVI DE LA DEMANDE ---- */
+  o += panel("suivi", head("Suivre ma demande","تتبع الطلب","ⴰⴹⴼⵓⵕ ⵏ ⵓⵙⵓⵜⵔ") + `
+    <p class="lead">${A("Saisissez le numéro de dossier reçu par email pour connaître l'état de votre demande.","أدخل رقم الملف الذي توصلت به عبر البريد لمعرفة حالة طلبك.")}</p>
+    <form id="trackForm" novalidate style="max-width:420px;">
+      <div class="field"><label for="tf-ref">${A("Numéro de dossier","رقم الملف")} <span class="req">*</span></label><input id="tf-ref" type="text" placeholder="DEM-2026-01847" required><div class="err"></div></div>
+      <button type="submit" class="btn btn-primary">${A("Vérifier","تحقق")}</button>
+      <div class="form-status" id="trackStatus" role="status"></div>
+    </form>
+
+    ` + head("Exemple de suivi","نموذج للتتبع","ⴰⵎⴷⵢⴰ ⵏ ⵓⴹⴼⵓⵕ") + `
+    <div class="tracker">
+      <div class="tr-step"><div class="dot">✓</div><div class="lbl">${A("Demande envoyée","الطلب مُرسَل")}</div><div class="sub">${A("12 juillet","12 يوليوز")}</div></div>
+      <div class="tr-step"><div class="dot">✓</div><div class="lbl">${A("Dossier complet","الملف مكتمل")}</div><div class="sub">${A("13 juillet","13 يوليوز")}</div></div>
+      <div class="tr-step pending"><div class="dot">3</div><div class="lbl">${A("Validation en cours","المصادقة جارية")}</div><div class="sub">${A("Section locale","الفرع المحلي")}</div></div>
+      <div class="tr-step pending"><div class="dot">4</div><div class="lbl">${A("Carte délivrée","البطاقة مسلَّمة")}</div><div class="sub">—</div></div>
+    </div>
+  `);
+
+  /* ---- ESPACE MEMBRE ---- */
+  const demoBadge = `<div class="demo-badge" style="margin-bottom:16px;">${A("Aperçu de démonstration — les données affichées sont fictives et illustrent le futur espace personnel.","عرض تجريبي — المعطيات المعروضة وهمية وتوضح الفضاء الشخصي المقبل.")}</div>`;
+
+  o += panel("membre-tableau", head("Mon tableau de bord","لوحة القيادة","ⵜⴰⴼⵍⵡⵉⵜ ⵉⵏⵓ") + demoBadge + `
+    <div class="stats">
+      <div class="stat-card"><div class="num">2019</div><div class="cap">${A("Membre depuis","عضو منذ")}</div></div>
+      <div class="stat-card"><div class="num">14</div><div class="cap">${A("Activités suivies","أنشطة متابَعة")}</div></div>
+      <div class="stat-card"><div class="num">3</div><div class="cap">${A("Formations validées","تكوينات منجزة")}</div></div>
+      <div class="stat-card"><div class="num">2026</div><div class="cap">${A("Cotisation à jour","الأداء محيَّن")}</div></div>
+    </div>
+    ` + head("À traiter","إجراءات مطلوبة","ⴰⵔ ⵜⵜⵡⴰⵙⴽⴰⵔ") + `
+    <div class="notice-major">
+      <div class="t">${A("Renouvellement de mandature à confirmer","تجديد الولاية في انتظار التأكيد")}</div>
+      <div class="d">${A("Le 14ᵉ Congrès ouvre une nouvelle mandature. Confirmez votre engagement pour rester membre actif.","يفتح المؤتمر الرابع عشر ولاية جديدة. أكد التزامك للبقاء عضواً نشطاً.")}</div>
+      <button class="btn btn-primary" style="margin-top:12px;" data-goto="renouveler">${A("Renouveler maintenant","التجديد الآن")}</button>
+    </div>
+    ` + head("Mes prochaines échéances","المواعيد المقبلة","ⵉⵎⵓⵔⵙⵏ ⵉⵏⵓ") + `
+    <div class="event-card"><div class="event-date">27<span>${A("JUIL","يوليوز")}</span></div><div class="event-info"><div class="t">${A("Formation en leadership — Session régionale","تكوين في القيادة — دورة جهوية")}</div><div class="l">${A("Inscription confirmée","التسجيل مؤكد")}</div></div></div>
+    <div class="event-card"><div class="event-date">03<span>${A("AOÛT","غشت")}</span></div><div class="event-info"><div class="t">${A("Rencontre des coordinations régionales","لقاء التنسيقيات الجهوية")}</div><div class="l">${A("Places disponibles","أماكن متاحة")}</div></div></div>
+    ` + head("Mes badges","شاراتي","ⵜⵉⵣⵎⵎⴰⵔ ⵉⵏⵓ") + `
+    <div class="badge-row">
+      <span class="badge-chip">${A("Militant régulier","مناضل منتظم")}</span>
+      <span class="badge-chip">${A("Formation leadership","تكوين القيادة")}</span>
+      <span class="badge-chip">${A("Congrès 2026","مؤتمر 2026")}</span>
+      <span class="badge-chip off">${A("Plaidoyer — à obtenir","الترافع — لم تُنل بعد")}</span>
+    </div>
+  `);
+
+  o += panel("membre-carte", head("Ma carte de membre","بطاقة العضوية","ⵜⴰⴽⴰⵕⴹⴰ ⵉⵏⵓ") + demoBadge + `
+    <div class="id-card">
+      <div class="qr"></div>
+      <div style="font-size:11px;opacity:.85;">${A("Carte de membre","بطاقة العضوية")}</div>
+      <div style="font-size:17px;font-weight:800;margin-top:16px;">${A("Nom Prénom","الاسم الكامل")}</div>
+      <div style="font-size:11px;opacity:.75;margin-top:2px;">JI-2019-004512</div>
+      <div style="font-size:11px;opacity:.75;">${A("Section Rabat-Salé-Kénitra","فرع الرباط-سلا-القنيطرة")}</div>
+      <div style="font-size:11px;opacity:.9;margin-top:10px;">${A("Valable jusqu'au 31 décembre 2026","صالحة إلى 31 دجنبر 2026")}</div>
+    </div>
+    <p class="lead">${A("Le QR code permet de vérifier la validité de la carte lors des congrès et activités. Il est mis à jour automatiquement à chaque renouvellement de cotisation ou de mandature.","يتيح رمز QR التحقق من صلاحية البطاقة خلال المؤتمرات والأنشطة. ويُحدَّث آلياً عند كل تجديد للأداء أو للولاية.")}</p>
+    <div class="doc-row"><div class="doc-icon"></div><div><div class="t">${A("Télécharger la carte (PDF)","تحميل البطاقة (PDF)")}</div><div class="d">${A("Format imprimable","صيغة قابلة للطبع")}</div></div></div>
+  `);
+
+  o += panel("membre-cotisation", head("Mes cotisations","واجبات الانخراط","ⵉⵙⵓⵔⴰⴼ ⵉⵏⵓ") + demoBadge + `
+    <p class="lead">${A("La cotisation est réglée auprès de votre section locale ; le responsable l'enregistre ensuite dans votre dossier. Cet historique fait foi.","يُؤدى واجب الانخراط لدى فرعك المحلي؛ ثم يسجله المسؤول في ملفك. هذا السجل هو المرجع.")}</p>
+    <div class="doc-row"><div class="doc-icon" style="background:var(--green-bg);"></div><div><div class="t">${A("Cotisation 2026","واجب 2026")}</div><div class="d">${A("Réglée le 12 juillet 2026 — reçu n° 4512","أُدي في 12 يوليوز 2026 — وصل رقم 4512")}</div></div></div>
+    <div class="doc-row"><div class="doc-icon" style="background:var(--green-bg);"></div><div><div class="t">${A("Cotisation 2025","واجب 2025")}</div><div class="d">${A("Réglée le 3 février 2025","أُدي في 3 فبراير 2025")}</div></div></div>
+    <div class="doc-row"><div class="doc-icon" style="background:var(--green-bg);"></div><div><div class="t">${A("Cotisation 2024","واجب 2024")}</div><div class="d">${A("Réglée le 19 janvier 2024","أُدي في 19 يناير 2024")}</div></div></div>
+  `);
+
+  o += panel("membre-profil", head("Mon profil","ملفي الشخصي","ⴰⴼⴰⵢⵍⵓ ⵉⵏⵓ") + demoBadge + `
+    <div class="row2">
+      <div class="field"><label for="pf-name">${A("Nom complet","الاسم الكامل")}</label><input id="pf-name" type="text" value="${A("Nom Prénom","الاسم الكامل")}"></div>
+      <div class="field"><label for="pf-mail">${A("Adresse email","البريد الإلكتروني")}</label><input id="pf-mail" type="email" value="membre@exemple.ma"></div>
+    </div>
+    <div class="row2">
+      <div class="field"><label for="pf-tel">${A("Téléphone","الهاتف")}</label><input id="pf-tel" type="tel" value="06 00 00 00 00"></div>
+      <div class="field"><label for="pf-sec">${A("Section","الفرع")}</label><input id="pf-sec" type="text" value="Rabat-Salé-Kénitra" readonly></div>
+    </div>
+    <div class="field"><label for="pf-vis">${A("Visibilité dans l'annuaire des membres","الظهور في دليل الأعضاء")}</label>
+      <select id="pf-vis">
+        <option>${A("Visible par tous les membres","ظاهر لجميع الأعضاء")}</option>
+        <option>${A("Visible par ma section uniquement","ظاهر لفرعي فقط")}</option>
+        <option>${A("Masqué","مخفي")}</option>
+      </select></div>
+    <button class="btn btn-primary">${A("Enregistrer les modifications","حفظ التعديلات")}</button>
   `);
 
   /* ---- CONTACT ---- */
@@ -1267,6 +1476,13 @@ function buildPanels(){
     <div class="social-row">
       <a href="#/contact/ecrire" aria-label="Facebook">f</a><a href="#/contact/ecrire" aria-label="Instagram">in</a>
       <a href="#/contact/ecrire" aria-label="X">X</a><a href="#/contact/ecrire" aria-label="YouTube">▶</a>
+    </div>
+
+    ` + head("Lettre d'information","النشرة الإخبارية","ⵜⴰⴱⵕⴰⵜ ⵏ ⵉⵏⵖⵎⵉⵙⵏ") + `
+    <p class="lead">${A("Recevez les activités et communiqués de l'organisation. Vous pouvez vous désabonner à tout moment.","توصل بأنشطة وبلاغات المنظمة. يمكنك إلغاء الاشتراك في أي وقت.")}</p>
+    <div class="row2" style="max-width:560px;">
+      <div class="field"><label for="nl-mail">${A("Adresse email","البريد الإلكتروني")}</label><input id="nl-mail" type="email"></div>
+      <div class="field" style="display:flex;align-items:flex-end;"><button class="btn btn-primary" style="width:100%;">${A("M'abonner","الاشتراك")}</button></div>
     </div>
   `);
 
@@ -1667,9 +1883,12 @@ function runSearch(q){
 /* ---------- formulaire de contact ---------- */
 function validateField(input){
   const field = input.closest('.field');
+  if (!field) return true;
   const err = field.querySelector('.err');
+  if (!err) return true;
   let msg = '';
-  if (input.required && !input.value.trim()) msg = t().required;
+  const empty = input.type === 'checkbox' ? !input.checked : !input.value.trim();
+  if (input.required && empty) msg = t().required;
   else if (input.type === 'email' && input.value && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(input.value)) msg = t().emailBad;
   err.textContent = msg;
   err.classList.toggle('show', !!msg);
@@ -1677,15 +1896,18 @@ function validateField(input){
   return !msg;
 }
 function initForm(){
-  const form = document.getElementById('contactForm');
+  ['contactForm','joinForm','renewForm','trackForm'].forEach(initOneForm);
+}
+function initOneForm(id){
+  const form = document.getElementById(id);
   if (!form) return;
-  form.querySelectorAll('input,textarea').forEach(i =>
+  form.querySelectorAll('input,textarea,select').forEach(i =>
     i.addEventListener('blur', () => validateField(i)));
   form.addEventListener('submit', e => {
     e.preventDefault();
-    const inputs = [...form.querySelectorAll('input,textarea')];
+    const inputs = [...form.querySelectorAll('input,textarea,select')];
     const ok = inputs.map(validateField).every(Boolean);
-    const status = document.getElementById('formStatus');
+    const status = form.querySelector('.form-status') || document.getElementById('formStatus');
     const btn = form.querySelector('button[type="submit"]');
     if (!ok){
       status.className = 'form-status ko show';
@@ -1695,7 +1917,10 @@ function initForm(){
     }
     btn.disabled = true; btn.dataset.label = btn.textContent; btn.textContent = t().sending;
     setTimeout(() => {
-      status.className = 'form-status ok show'; status.textContent = t().sent;
+      const msg = id==='joinForm' ? t().sentJoin : id==='renewForm' ? t().sentRenew
+                : id==='trackForm' ? t().sentTrack : t().sent;
+      status.className = 'form-status ' + (id==='trackForm' ? 'ko' : 'ok') + ' show';
+      status.textContent = msg;
       btn.disabled = false; btn.textContent = btn.dataset.label; form.reset();
     }, 700);
   });
