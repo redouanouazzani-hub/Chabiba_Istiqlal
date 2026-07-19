@@ -79,7 +79,7 @@
   .sticky-cta button{ width:100%; background:var(--pink); color:#fff; border:none; border-radius:7px; padding:13px; font-size:13.5px; font-weight:700; cursor:pointer; }
 
   /* ---------- layout ---------- */
-  main{ max-width:1100px; margin:0 auto; padding:0 24px 60px; }
+  main{ max-width:1240px; margin:0 auto; padding:0 32px 70px; }
   .panel{ display:none; animation:fadeIn .35s ease; }
   .panel.active{ display:block; }
   @keyframes fadeIn{ from{opacity:0; transform:translateY(8px);} to{opacity:1; transform:translateY(0);} }
@@ -88,15 +88,18 @@
   .crumb b{ color:var(--pink); }
   .crumb button{ background:none; border:none; color:inherit; font-size:inherit; padding:0; cursor:pointer; font-family:inherit; }
   .crumb button:hover{ color:var(--pink); text-decoration:underline; }
-  h2.section-title{ font-size:20px; color:var(--navy-dark); margin:2px 0 4px; }
-  .section-title .ar{ display:block; font-size:14px; color:var(--pink); font-weight:700; direction:rtl; margin-top:2px; }
-  html[dir="rtl"] .section-title .ar{ direction:rtl; }
-  p.lead{ color:var(--muted-dark); font-size:13.5px; max-width:720px; line-height:1.6; margin:0 0 20px; }
+  h2.section-title{ font-size:21px; color:var(--navy-dark); margin:30px 0 4px; padding-top:16px; position:relative; letter-spacing:-.2px; }
+  h2.section-title::before{ content:""; position:absolute; top:0; inset-inline-start:0; width:38px; height:3px; border-radius:2px; background:var(--pink); }
+  .section-title .ar{ display:block; font-size:14px; color:var(--pink); font-weight:700; direction:rtl; margin-top:3px; }
+  p.lead{ color:var(--muted-dark); font-size:13.5px; max-width:720px; line-height:1.7; margin:0 0 20px; }
 
   /* ---------- hero ---------- */
-  .hero{ background:linear-gradient(120deg,var(--navy-dark),var(--navy) 55%,var(--pink-dark)); border-radius:14px; padding:44px 40px; color:#fff; margin-top:16px; position:relative; overflow:hidden; }
+  .hero{ background:linear-gradient(120deg,var(--navy-dark),var(--navy) 55%,var(--pink-dark)); border-radius:16px; padding:50px 44px; color:#fff; margin-top:16px; position:relative; overflow:hidden; }
   .hero::after{ content:""; position:absolute; inset-inline-end:-60px; top:-60px; width:260px; height:260px; border-radius:50%; background:rgba(228,0,124,.25); }
-  .hero h1{ font-size:27px; margin:0 0 8px; max-width:560px; position:relative; }
+  /* trame de lignes diagonales : rappel discret du drapeau et de la trame militante */
+  .hero::before{ content:""; position:absolute; inset:0; opacity:.09;
+    background-image:repeating-linear-gradient(115deg, #fff 0 1px, transparent 1px 22px); }
+  .hero h1{ font-size:30px; margin:0 0 8px; max-width:560px; position:relative; letter-spacing:-.5px; line-height:1.18; }
   .hero .ar{ font-size:18px; color:#ffd7ec; font-weight:700; direction:rtl; margin:0 0 14px; position:relative; }
   .hero p{ color:#dbe3ec; max-width:480px; font-size:13px; line-height:1.6; position:relative; }
   .hero .btns{ margin-top:20px; display:flex; gap:12px; position:relative; flex-wrap:wrap; }
@@ -106,18 +109,22 @@
   .btn-ghost{ background:rgba(255,255,255,.14); color:#fff; border:1px solid rgba(255,255,255,.5); }
   .tag-congres{ display:inline-block; background:rgba(255,255,255,.18); font-size:11px; padding:4px 10px; border-radius:12px; margin-bottom:14px; position:relative; }
 
-  .stats{ display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-top:-30px; position:relative; z-index:2; padding:0 10px; }
-  .stat-card{ background:#fff; border-radius:10px; padding:16px; text-align:center; box-shadow:0 8px 20px rgba(18,38,63,.08); border:1px solid var(--line); }
-  .stat-card .num{ font-size:24px; font-weight:800; color:var(--pink); }
-  .stat-card .cap{ font-size:11.5px; color:var(--muted-dark); margin-top:2px; }
+  .stats{ display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-top:-34px; position:relative; z-index:2; padding:0 10px; }
+  .stat-card{ background:#fff; border-radius:12px; padding:18px 16px; text-align:center; box-shadow:0 10px 26px rgba(18,38,63,.10); border:1px solid var(--line); position:relative; overflow:hidden; transition:transform .22s, box-shadow .22s; }
+  .stat-card::before{ content:""; position:absolute; top:0; inset-inline:0; height:3px; background:var(--pink); }
+  .stat-card:hover{ transform:translateY(-3px); box-shadow:0 16px 34px rgba(18,38,63,.14); }
+  .stat-card .num{ font-size:27px; font-weight:800; color:var(--pink); letter-spacing:-.5px; }
+  .stat-card .cap{ font-size:11.5px; color:var(--muted-dark); margin-top:3px; }
 
   .grid3{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
   .grid2{ display:grid; grid-template-columns:repeat(2,1fr); gap:18px; }
-  .news-card{ background:#fff; border-radius:12px; overflow:hidden; border:1px solid var(--line); box-shadow:var(--shadow); }
-  .news-thumb{ height:100px; }
-  .news-body{ padding:14px; }
-  .news-cat{ font-size:10.5px; font-weight:700; color:var(--pink); text-transform:uppercase; letter-spacing:.4px; }
-  .news-title{ font-size:13px; font-weight:700; color:var(--navy-dark); margin:6px 0; line-height:1.35; }
+  .news-card{ background:#fff; border-radius:14px; overflow:hidden; border:1px solid var(--line); box-shadow:var(--shadow); transition:transform .22s, box-shadow .22s; }
+  .news-card:hover{ transform:translateY(-4px); box-shadow:0 16px 32px rgba(18,38,63,.13); }
+  .news-thumb{ height:112px; position:relative; }
+  .news-thumb::after{ content:""; position:absolute; inset:0; background:repeating-linear-gradient(115deg,rgba(255,255,255,.14) 0 1px,transparent 1px 20px); }
+  .news-body{ padding:16px; }
+  .news-cat{ font-size:10px; font-weight:800; color:var(--pink); text-transform:uppercase; letter-spacing:.7px; }
+  .news-title{ font-size:13.5px; font-weight:700; color:var(--navy-dark); margin:7px 0; line-height:1.4; }
   .news-date{ font-size:11.5px; color:var(--muted-dark); }
 
   .g1{ background:linear-gradient(135deg,#E4007C,#7A1450); } .g2{ background:linear-gradient(135deg,#1F3A5F,#3E6491); }
@@ -134,17 +141,26 @@
   .hint{ font-size:11px; color:var(--muted-dark); margin-top:6px; font-style:italic; }
 
   /* ---------- organigramme interactif ---------- */
-  .orgchart{ display:flex; flex-direction:column; align-items:center; gap:10px; margin-top:20px; }
-  .org-node{ padding:9px 22px; border-radius:7px; font-size:12px; font-weight:700; text-align:center; border:none; cursor:pointer; font-family:inherit; display:flex; align-items:center; gap:9px; min-height:38px; }
-  .org-node .cnt{ font-size:10.5px; font-weight:800; background:rgba(255,255,255,.22); border-radius:10px; padding:1px 8px; }
-  .org-1{ background:var(--navy-dark); color:#fff; } .org-2{ background:var(--pink); color:#fff; }
-  .org-3{ background:#fff; border:1.5px solid var(--navy); color:var(--navy-dark); }
-  .org-4{ background:#fff; border:1.5px solid var(--pink); color:var(--pink-dark); }
+  /* ---- organigramme : échelle alignée sur le sens de lecture ---- */
+  .org-wrap{ display:grid; grid-template-columns:minmax(260px,340px) 1fr; gap:26px; align-items:start; margin-top:18px; }
+  .orgchart{ display:flex; flex-direction:column; gap:0; position:relative; }
+  .orgchart::before{ content:""; position:absolute; inset-inline-start:15px; top:12px; bottom:12px; width:2px; background:linear-gradient(var(--pink),var(--navy)); opacity:.28; }
+  .org-node{ padding:11px 16px; border-radius:10px; font-size:12.5px; font-weight:700; text-align:start; border:1px solid transparent; cursor:pointer; font-family:inherit; display:flex; align-items:center; gap:10px; min-height:44px; width:100%; position:relative; margin-bottom:8px; transition:transform .2s, box-shadow .2s; }
+  .org-node::before{ content:""; position:absolute; inset-inline-start:-18px; top:50%; width:9px; height:9px; border-radius:50%; background:#fff; border:2px solid var(--pink); transform:translateY(-50%); }
+  .org-node .lbl{ flex:1; }
+  .org-node .cnt{ font-size:10.5px; font-weight:800; border-radius:10px; padding:2px 9px; }
+  .org-1{ background:var(--navy-dark); color:#fff; box-shadow:0 5px 14px rgba(18,38,63,.18); }
+  .org-2{ background:var(--pink); color:#fff; box-shadow:0 5px 14px rgba(228,0,124,.2); }
+  .org-3{ background:#fff; border-color:var(--navy); color:var(--navy-dark); }
+  .org-4{ background:#fff; border-color:var(--line); color:var(--navy-dark); }
+  .org-1 .cnt, .org-2 .cnt{ background:rgba(255,255,255,.22); }
   .org-3 .cnt, .org-4 .cnt{ background:var(--bg); color:var(--muted-dark); }
-  .org-node[aria-expanded="true"]{ background:var(--pink); border-color:var(--pink); color:#fff; }
+  .org-node:hover{ transform:translateX(3px); }
+  html[dir="rtl"] .org-node:hover{ transform:translateX(-3px); }
+  .org-node[aria-expanded="true"]{ background:var(--pink); border-color:var(--pink); color:#fff; box-shadow:0 6px 18px rgba(228,0,124,.25); }
   .org-node[aria-expanded="true"] .cnt{ background:rgba(255,255,255,.25); color:#fff; }
-  .org-line{ width:2px; height:14px; background:var(--line); }
-  .org-detail{ background:#fff; border:1px solid var(--line); border-inline-start:3px solid var(--pink); border-radius:10px; padding:14px 16px; margin-top:12px; max-width:620px; box-shadow:var(--shadow); }
+  .org-node[aria-expanded="true"]::before{ background:var(--pink); box-shadow:0 0 0 4px var(--pink-soft); }
+  .org-detail{ background:#fff; border:1px solid var(--line); border-inline-start:3px solid var(--pink); border-radius:12px; padding:20px 22px; box-shadow:0 8px 22px rgba(18,38,63,.07); position:sticky; top:118px; }
   .org-detail .t{ font-size:13px; font-weight:800; color:var(--navy-dark); }
   .org-detail .t .ar{ color:var(--pink); font-weight:700; margin-inline-start:7px; direction:rtl; display:inline-block; }
   .org-detail .d{ font-size:12.5px; color:var(--muted-dark); line-height:1.6; margin-top:5px; }
@@ -160,21 +176,55 @@
   .bureau-search:focus{ border-color:var(--pink); }
   .pole-select{ border:1px solid var(--line); border-radius:7px; padding:9px 12px; font-size:12.5px; font-family:inherit; background:#fff; color:var(--ink); min-height:40px; cursor:pointer; }
   .bureau-count{ font-size:12px; color:var(--muted-dark); }
+  .mode-btn{ background:#fff; border:1px solid var(--line); border-radius:7px; padding:9px 14px; font-size:12px; font-weight:700; color:var(--navy-dark); cursor:pointer; min-height:40px; font-family:inherit; }
+  .mode-btn:hover{ border-color:var(--pink); color:var(--pink); }
+  .mode-btn.on{ background:var(--pink-soft); border-color:var(--pink); color:var(--pink-dark); }
   .bureau-layout{ display:grid; grid-template-columns:1fr; gap:18px; align-items:start; }
   .bureau-layout.with-panel{ grid-template-columns:1fr 340px; }
-  .bureau-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:12px; }
+  .bureau-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
   .bureau-layout.with-panel .bureau-grid{ grid-template-columns:repeat(3,1fr); }
-  .bureau-card{ background:#fff; border:1px solid var(--line); border-radius:10px; padding:14px 10px; text-align:center; cursor:pointer; font-family:inherit; transition:border-color .15s, box-shadow .15s, transform .15s; min-height:120px; display:flex; flex-direction:column; align-items:center; }
-  .bureau-card:hover{ border-color:var(--pink); box-shadow:0 6px 16px rgba(228,0,124,.12); transform:translateY(-2px); }
-  .bureau-card[aria-pressed="true"]{ border-color:var(--pink); border-width:1.5px; box-shadow:0 0 0 3px var(--pink-soft); }
-  .bureau-card.is-sg{ border-color:var(--pink); border-width:1.5px; grid-column:1/-1; flex-direction:row; text-align:start; gap:14px; padding:16px; }
-  .bureau-avatar{ width:44px; height:44px; border-radius:50%; background:var(--pink-soft); margin:0 auto 8px; display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:800; color:var(--pink); flex-shrink:0; overflow:hidden; }
+
+  /* ---- carte pivotante ---- */
+  .flip{ perspective:1200px; min-height:212px; background:none; border:none; padding:0; cursor:pointer; font-family:inherit; }
+  .flip-inner{ position:relative; width:100%; height:100%; min-height:212px; transition:transform .62s cubic-bezier(.2,.7,.2,1); transform-style:preserve-3d; }
+  .flip.turned .flip-inner{ transform:rotateY(180deg); }
+  html[dir="rtl"] .flip.turned .flip-inner{ transform:rotateY(-180deg); }
+  .face{ position:absolute; inset:0; backface-visibility:hidden; -webkit-backface-visibility:hidden; border-radius:14px; padding:18px 14px; display:flex; flex-direction:column; align-items:center; justify-content:center; overflow:hidden; }
+
+  /* recto : blanc, filet rose en pied, relief au survol */
+  .face-front{ background:#fff; border:1px solid var(--line); box-shadow:0 4px 14px rgba(18,38,63,.05); }
+  .face-front::after{ content:""; position:absolute; inset-inline:0; bottom:0; height:3px; background:linear-gradient(90deg,var(--pink),var(--navy)); transform:scaleX(0); transform-origin:center; transition:transform .35s ease; }
+  .flip:hover .face-front{ box-shadow:0 14px 30px rgba(18,38,63,.13); border-color:#d6dde5; }
+  .flip:hover .face-front::after{ transform:scaleX(1); }
+  .flip:hover .bureau-avatar{ transform:scale(1.06); box-shadow:0 0 0 5px var(--pink-soft); }
+
+  /* verso : navy profond, mission en clair */
+  .face-back{ transform:rotateY(180deg); background:linear-gradient(155deg,var(--navy-dark),var(--navy) 70%,#2a4a75); color:#fff; justify-content:flex-start; text-align:start; box-shadow:0 14px 30px rgba(18,38,63,.22); }
+  html[dir="rtl"] .face-back{ transform:rotateY(-180deg); }
+  .face-back::before{ content:""; position:absolute; inset-inline-end:-40px; top:-40px; width:130px; height:130px; border-radius:50%; background:rgba(228,0,124,.28); }
+  .face-back .bk-name{ font-size:12.5px; font-weight:800; position:relative; }
+  .face-back .bk-name-ar{ font-size:12px; font-weight:700; color:#ffd7ec; direction:rtl; margin-top:1px; position:relative; }
+  .face-back .bk-sep{ width:26px; height:2px; background:var(--pink); margin:9px 0; position:relative; border-radius:2px; }
+  .face-back .bk-mission{ font-size:11px; line-height:1.65; color:#dbe3ec; direction:rtl; text-align:start; position:relative; overflow-y:auto; max-height:104px; padding-inline-end:4px; }
+  .face-back .bk-hint{ position:absolute; inset-inline-end:12px; bottom:10px; font-size:9.5px; color:rgba(255,255,255,.55); }
+
+  .bureau-avatar{ width:56px; height:56px; border-radius:50%; background:linear-gradient(140deg,var(--pink-soft),#fff); margin:0 auto 10px; display:flex; align-items:center; justify-content:center; font-size:16px; font-weight:800; color:var(--pink-dark); flex-shrink:0; overflow:hidden; border:2px solid var(--pink-soft); transition:transform .25s, box-shadow .25s; }
   .bureau-avatar img{ width:100%; height:100%; object-fit:cover; }
-  .bureau-card.is-sg .bureau-avatar{ width:60px; height:60px; margin:0; border:2px solid var(--pink); }
-  .bureau-card .nm{ font-size:12px; font-weight:700; color:var(--navy-dark); line-height:1.3; }
-  .bureau-card .nm-ar{ font-size:11.5px; color:var(--muted-dark); direction:rtl; margin-top:2px; }
-  .bureau-card .pole-tag{ font-size:9.5px; font-weight:700; color:var(--pink-dark); background:var(--pink-soft); border-radius:10px; padding:2px 8px; margin-top:7px; display:inline-block; }
-  .bureau-card.is-sg .sg-txt{ display:flex; flex-direction:column; align-items:flex-start; }
+  .face-front .nm{ font-size:12.5px; font-weight:700; color:var(--navy-dark); line-height:1.3; text-align:center; }
+  .face-front .nm-ar{ font-size:11.5px; color:var(--muted-dark); direction:rtl; margin-top:2px; text-align:center; }
+  .face-front .pole-tag{ font-size:9.5px; font-weight:700; color:var(--pink-dark); background:var(--pink-soft); border-radius:10px; padding:3px 9px; margin-top:9px; display:inline-block; }
+
+  /* Secrétaire Général : carte pleine largeur, traitement distinct */
+  .flip.is-sg{ grid-column:1/-1; min-height:150px; }
+  .flip.is-sg .flip-inner{ min-height:150px; }
+  .flip.is-sg .face{ flex-direction:row; align-items:center; justify-content:flex-start; gap:20px; padding:20px 24px; text-align:start; }
+  .flip.is-sg .face-front{ border:1.5px solid var(--pink); background:linear-gradient(120deg,#fff 62%,var(--pink-soft)); }
+  .flip.is-sg .bureau-avatar{ width:84px; height:84px; margin:0; border:3px solid var(--pink); }
+  .flip.is-sg .sg-txt{ display:flex; flex-direction:column; align-items:flex-start; }
+  .flip.is-sg .face-front .nm{ font-size:16px; text-align:start; }
+  .flip.is-sg .face-front .nm-ar{ font-size:14px; color:var(--pink); font-weight:700; text-align:start; }
+  .flip.is-sg .face-back .bk-mission{ max-height:78px; font-size:11.5px; }
+  .flip.is-sg .face-back{ flex-direction:column; align-items:flex-start; justify-content:center; }
 
   .empty-state{ background:#fff; border:1px dashed var(--line); border-radius:10px; padding:30px 20px; text-align:center; grid-column:1/-1; }
   .empty-state p{ font-size:12.5px; color:var(--muted-dark); margin:0 0 12px; }
@@ -311,6 +361,8 @@
     .sticky-cta{ display:block; }
     main{ padding-bottom:90px; }
     .stats{ grid-template-columns:repeat(2,1fr); }
+    .org-wrap{ grid-template-columns:1fr; gap:16px; }
+    .org-detail{ position:static; }
     .grid3,.grid2,.steps,.value-grid,.region-grid{ grid-template-columns:1fr 1fr; }
     .bureau-grid, .bureau-layout.with-panel .bureau-grid{ grid-template-columns:repeat(2,1fr); }
     .hero{ padding:32px 24px; }
@@ -338,10 +390,15 @@
   @media (max-width:560px){
     .stats{ grid-template-columns:1fr 1fr; }
     .grid3,.grid2,.steps,.value-grid,.region-grid,.row2{ grid-template-columns:1fr; }
-    .bureau-grid, .bureau-layout.with-panel .bureau-grid{ grid-template-columns:1fr; }
-    .bureau-card{ flex-direction:row; text-align:start; gap:12px; align-items:center; min-height:0; }
-    .bureau-card .bureau-avatar{ margin:0; }
-    .bureau-card .txt{ display:flex; flex-direction:column; align-items:flex-start; }
+    .bureau-grid, .bureau-layout.with-panel .bureau-grid{ grid-template-columns:1fr 1fr; gap:12px; }
+    .flip, .flip-inner{ min-height:196px; }
+    .face{ padding:14px 10px; }
+    .bureau-avatar{ width:46px; height:46px; font-size:14px; }
+    .face-back .bk-mission{ max-height:88px; font-size:10.5px; }
+    .flip.is-sg .face{ flex-direction:column; text-align:center; gap:12px; padding:18px 14px; }
+    .flip.is-sg, .flip.is-sg .flip-inner{ min-height:210px; }
+    .flip.is-sg .sg-txt{ align-items:center; }
+    .flip.is-sg .face-front .nm, .flip.is-sg .face-front .nm-ar{ text-align:center; }
     .gallery{ grid-template-columns:repeat(2,1fr); }
     .tracker{ flex-direction:column; gap:14px; }
     .tr-step::after{ display:none; }
@@ -479,6 +536,8 @@ const UI = {
     reset:"Réinitialiser la recherche", allPoles:"Tous les pôles",
     counter:(n,t)=>n+" membre"+(n>1?"s":"")+" sur "+t,
     missionLabel:"Mission officielle", prev:"← Précédent", next:"Suivant →",
+    flipHint:"cliquez pour lire la mission", backHint:"↺ retour",
+    openPanel:"Ouvrir en grand", panelMode:"Lecture en panneau", flipMode:"Cartes à retourner",
     dpHint:"Utilisez les flèches ← → pour parcourir les membres, Échap pour fermer.",
     demo:"Maquette de démonstration — les contenus, chiffres et documents sont fournis à titre d'illustration et ne constituent pas une publication officielle.",
     required:"Champ obligatoire.", emailBad:"Adresse email invalide, exemple : nom@exemple.ma",
@@ -494,6 +553,8 @@ const UI = {
     reset:"إعادة تعيين البحث", allPoles:"جميع الأقطاب",
     counter:(n,t)=>n+" عضو من أصل "+t,
     missionLabel:"المهمة الرسمية", prev:"← السابق", next:"التالي →",
+    flipHint:"انقر لقراءة المهمة", backHint:"↺ رجوع",
+    openPanel:"فتح بحجم أكبر", panelMode:"القراءة في لوحة", flipMode:"بطاقات قابلة للقلب",
     dpHint:"استعمل السهمين ← → للتنقل بين الأعضاء، وEscape للإغلاق.",
     demo:"نموذج تجريبي — المحتويات والأرقام والوثائق معروضة للتوضيح فقط ولا تشكل نشراً رسمياً.",
     required:"حقل إلزامي.", emailBad:"عنوان بريد إلكتروني غير صالح، مثال: nom@exemple.ma",
@@ -999,16 +1060,19 @@ function buildPanels(){
       <div class="sg-info">
         <div class="name">${A("Mansour Lambarki","منصور لمباركي")}</div>
         <div class="role">${A("Secrétaire Général","الكاتب العام")} <span class="ar">${A("الكاتب العام","Secrétaire Général")}</span></div>
-        <div class="bio">${A("Élu à l'unanimité au poste de Secrétaire Général de la Jeunesse Istiqlalienne lors du 14ᵉ Congrès national, succédant à Othmane Tarmounia, désormais membre du Comité exécutif du Parti de l'Istiqlal.","انتُخب بالإجماع كاتباً عاماً للشبيبة الاستقلالية خلال المؤتمر الوطني الرابع عشر، خلفاً لعثمان ترمونية، عضو اللجنة التنفيذية لحزب الاستقلال حالياً.")}</div>
+        <div class="bio">${A("Élu à l'unanimité au poste de Secrétaire Général de la Jeunesse Istiqlalienne lors du 14ᵉ Congrès national.","انتُخب بالإجماع كاتباً عاماً للشبيبة الاستقلالية خلال المؤتمر الوطني الرابع عشر.")}</div>
         <div class="hint">${A("Cliquez sur la photo pour l'agrandir","انقر على الصورة لتكبيرها")}</div>
       </div>
     </div>
 
     ` + head("Structure de l'organisation","هيكلة المنظمة") + `
-    <div class="orgchart" id="orgchart"></div>
-    <div class="org-detail" id="orgDetail" aria-live="polite"></div>
+    <div class="org-wrap">
+      <div class="orgchart" id="orgchart"></div>
+      <div class="org-detail" id="orgDetail" aria-live="polite"></div>
+    </div>
 
     ` + head("Bureau exécutif — 14ᵉ mandature","المكتب التنفيذي — الولاية 14") + `
+    <p class="lead" style="margin-bottom:6px;">${A("Cliquez sur une carte pour lire la mission officielle du membre au dos.","انقر على أي بطاقة لقراءة المهمة الرسمية للعضو في الوجه الخلفي.")}</p>
     <div class="bureau-toolbar">
       <div class="toolbar-left">
         <label class="sr-only" for="bureauSearch">${A("Rechercher un membre","البحث عن عضو")}</label>
@@ -1018,6 +1082,7 @@ function buildPanels(){
           <option value="all">${t().allPoles}</option>
           __POLE_OPTIONS__
         </select>
+        <button class="mode-btn" id="modeBtn" aria-pressed="false">${A("Lecture en panneau","القراءة في لوحة")}</button>
       </div>
       <div class="bureau-count" id="bureauCount" aria-live="polite"></div>
     </div>
@@ -1324,6 +1389,31 @@ function renderOrgDetail(){
 
 /* ---------- grille des membres ---------- */
 let selectedMember = null, searchTerm = "", poleFilter = "all";
+const turned = new Set();   /* cartes actuellement retournées */
+
+let panelMode = false;   /* false = cartes à retourner, true = panneau latéral */
+
+/* Retourne une carte. Une seule à la fois : retourner la suivante remet
+   la précédente à l'endroit, sinon la grille devient illisible.
+   En mode panneau, le clic ouvre le panneau latéral à la place. */
+function toggleFlip(id){
+  if (panelMode){ openDetail(id); return; }
+  if (turned.has(id)) turned.delete(id);
+  else { turned.clear(); turned.add(id); }
+  renderMembers();
+}
+function toggleMode(){
+  panelMode = !panelMode;
+  turned.clear();
+  if (!panelMode && selectedMember) closeDetail();
+  const b = document.getElementById('modeBtn');
+  if (b){
+    b.textContent = panelMode ? t().flipMode : t().panelMode;
+    b.setAttribute('aria-pressed', panelMode);
+    b.classList.toggle('on', panelMode);
+  }
+  renderMembers();
+}
 
 /* normalisation tolérante : minuscules, accents latins et diacritiques arabes retirés */
 function norm(s){
@@ -1363,18 +1453,30 @@ function renderMembers(){
     grid.innerHTML = list.map(m => {
       const sg = m.pole === 'direction';
       const av = m.photo
-        ? '<div class="bureau-avatar"><img src="'+m.photo+'" alt="" loading="lazy"></div>'
-        : '<div class="bureau-avatar" aria-hidden="true">'+initials(m.fr)+'</div>';
-      return '<button class="bureau-card'+(sg?' is-sg':'')+'" data-id="'+m.id+'" '+
-        'aria-pressed="'+(selectedMember===m.id)+'">'+av+
-        '<span class="'+(sg?'sg-txt':'txt')+'">'+
-          '<span class="nm">'+m.fr+'</span>'+
-          '<span class="nm-ar">'+m.ar+'</span>'+
-          '<span class="pole-tag">'+(LANG==="ar"?POLES[m.pole][1]:POLES[m.pole][0])+'</span>'+
+        ? '<span class="bureau-avatar"><img src="'+m.photo+'" alt="" loading="lazy"></span>'
+        : '<span class="bureau-avatar" aria-hidden="true">'+initials(m.fr)+'</span>';
+      const pole = LANG==="ar" ? POLES[m.pole][1] : POLES[m.pole][0];
+      return '<button class="flip'+(sg?' is-sg':'')+(turned.has(m.id)?' turned':'')+'" data-id="'+m.id+'" '+
+        'aria-pressed="'+turned.has(m.id)+'" aria-label="'+m.fr+' — '+t().flipHint+'">'+
+        '<span class="flip-inner">'+
+          '<span class="face face-front">'+av+
+            '<span class="'+(sg?'sg-txt':'txt')+'">'+
+              '<span class="nm">'+m.fr+'</span>'+
+              '<span class="nm-ar">'+m.ar+'</span>'+
+              '<span class="pole-tag">'+pole+'</span>'+
+            '</span>'+
+          '</span>'+
+          '<span class="face face-back">'+
+            '<span class="bk-name">'+m.fr+'</span>'+
+            '<span class="bk-name-ar">'+m.ar+'</span>'+
+            '<span class="bk-sep"></span>'+
+            '<span class="bk-mission" lang="ar" dir="rtl">'+m.mission+'</span>'+
+            '<span class="bk-hint">'+t().backHint+'</span>'+
+          '</span>'+
         '</span></button>';
     }).join("");
-    grid.querySelectorAll('.bureau-card').forEach(c => {
-      c.addEventListener('click', () => openDetail(c.dataset.id));
+    grid.querySelectorAll('.flip').forEach(c => {
+      c.addEventListener('click', () => toggleFlip(c.dataset.id));
     });
   }
   document.getElementById('bureauCount').textContent = t().counter(list.length, MEMBERS.length);
@@ -1384,7 +1486,7 @@ function renderMembers(){
 let lastFocused = null;
 function openDetail(id){
   selectedMember = id;
-  lastFocused = document.querySelector('.bureau-card[data-id="'+id+'"]');
+  lastFocused = document.querySelector('.flip[data-id="'+id+'"]');
   renderMembers(); renderDetail();
   const p = document.getElementById('detailPanel');
   if (window.innerWidth < 1024) document.body.style.overflow = 'hidden';
@@ -1395,7 +1497,7 @@ function closeDetail(){
   selectedMember = null;
   document.body.style.overflow = '';
   renderMembers(); renderDetail();
-  if (prev) { const el = document.querySelector('.bureau-card[data-id="'+prev.dataset.id+'"]'); if (el) el.focus(); }
+  if (prev) { const el = document.querySelector('.flip[data-id="'+prev.dataset.id+'"]'); if (el) el.focus(); }
 }
 function stepMember(dir){
   const list = filteredMembers();
@@ -1573,6 +1675,9 @@ function boot(){
   });
   document.addEventListener('change', e => {
     if (e.target.id === 'poleSelect'){ poleFilter = e.target.value; renderMembers(); }
+  });
+  document.addEventListener('click', e => {
+    if (e.target.id === 'modeBtn') toggleMode();
   });
 }
 
